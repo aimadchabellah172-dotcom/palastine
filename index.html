@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>غزة: نبض الكرامة ورمز الصمود</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Animate Source -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        serif: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        palestine: {
+                            green: '#007A3D',
+                            red: '#CE1126',
+                            black: '#000000',
+                            white: '#FFFFFF',
+                            earth: '#f4f1ea'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+            body { @apply bg-palestine-earth text-slate-900 font-sans scroll-smooth; }
+            h1, h2, h3 { @apply font-serif; }
+        }
+
+        .glass-sticky {
+            @apply sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-hover {
+            @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+        }
+
+        .section-title::after {
+            content: '';
+            @apply block w-20 h-1 bg-palestine-red mx-auto mt-4;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f4f1ea; }
+        ::-webkit-scrollbar-thumb { background: #ce1126; @apply rounded-full; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Social Bar -->
+    <div class="bg-palestine-black text-white py-2 px-6 flex justify-between items-center text-xs">
+        <div class="flex gap-4">
+            <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3"></i> أرض فلسطين الأبية</span>
+        </div>
+        <div class="animate-pulse flex items-center gap-2">
+            <span class="w-2 h-2 bg-palestine-red rounded-full"></span> غزة الآن: صمود لا ينكسر
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-sticky px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-palestine-black rounded-full flex items-center justify-center text-white p-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/1200px-Flag_of_Palestine.svg.png" alt="Flag" class="rounded-sm">
+                </div>
+                <span class="text-2xl font-bold font-serif">غزة <span class="text-palestine-red">الصامدة</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 font-medium text-slate-700">
+                <a href="#about" class="hover:text-palestine-red transition-colors">عن غزة</a>
+                <a href="#humanitarian" class="hover:text-palestine-red transition-colors">الواقع الإنساني</a>
+                <a href="#resilience" class="hover:text-palestine-red transition-colors">قصص الصمود</a>
+                <a href="#support" class="hover:text-palestine-red transition-colors">كيف تساعد؟</a>
+            </div>
+            <a href="#support" class="bg-palestine-red text-white px-6 py-2 rounded-full font-bold hover:bg-red-700 transition-all shadow-lg animate__animated animate__pulse animate__infinite">
+                تبرع الآن
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient h-[80vh] flex items-center justify-center text-center text-white px-6">
+        <div class="max-w-4xl animate__animated animate__fadeInUp">
+            <h1 class="text-6xl md:text-8xl font-bold mb-6">غزة: عمق المأساة وشموخ الجبال</h1>
+            <p class="text-xl md:text-2xl font-light mb-10 leading-relaxed opacity-90 font-serif">
+                "بين الحطام والرماد، يولد الأمل من جديد. هنا غزة، الأرض التي تعانق السماء بكبريائها رغم كل الجراح."
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-palestine-green px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
+                    <i data-lucide="eye"></i> شاهد الواقع
+                </button>
+                <button class="bg-white/10 backdrop-blur-md border border-white/30 px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all">
+                    اعرف الحقيقة
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-20 space-y-32">
+
+        <!-- History Section -->
+        <section id="about" class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+                <h2 class="text-4xl md:text-5xl font-bold text-palestine-black section-title text-right rtl:text-right">تاريخ مغروس في عمق الأرض</h2>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    تعد غزة واحدة من أقدم مدن العالم، كانت ملتقى للقوافل ومعبراً للحضارات عبر العصور. اليوم، تواجه المدينة أكبر تحدٍ في تاريخها الحديث، محاصرة بين القيود لكنها حرة في إرادتها.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 bg-white rounded-2xl shadow-sm border-r-4 border-palestine-green">
+                        <div class="text-3xl font-bold text-palestine-green mb-1">5000+</div>
+                        <div class="text-sm font-bold text-slate-500 italic">عام من التاريخ</div>
+                    </div>
+                    <div class="p-6 bg-white rounded-2xl shadow-sm border-r-4 border-palestine-red">
+                        <div class="text-3xl font-bold text-palestine-red mb-1">2.3M</div>
+                        <div class="text-sm font-bold text-slate-500 italic">نسمة تحت الحصار</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-4 -right-4 w-24 h-24 bg-palestine-red rounded-full opacity-10"></div>
+                <img src="https://images.unsplash.com/photo-1623519890618-971c0800de12?auto=format&fit=crop&q=80&w=800" alt="Gaza City" class="rounded-[3rem] shadow-2xl relative z-10">
+            </div>
+        </section>
+
+        <!-- Humanitarian Stats Bento -->
+        <section id="humanitarian" class="space-y-12">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl font-bold section-title font-serif">صرخة الإنسانية</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">أرقام تعكس واقعاً لا يوصف، ومعاناة تتجاوز حدود الكلمات.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Stat 1 -->
+                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm card-hover flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-red-100 text-palestine-red rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="activity" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-serif">القطاع الصحي</h3>
+                    <p class="text-slate-600 mb-6">نقص حاد في الأدوية والوقود، مشافي تعمل فوق طاقتها وتحت التهديد المستمر.</p>
+                    <span class="text-palestine-red font-bold text-lg">وضع حرج جداً</span>
+                </div>
+                <!-- Stat 2 -->
+                <div class="bg-palestine-black text-white p-8 rounded-[2.5rem] shadow-xl card-hover flex flex-col items-center text-center scale-105">
+                    <div class="w-16 h-16 bg-white/10 text-white rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="home" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-serif">النزوح والسكن</h3>
+                    <p class="text-slate-300 mb-6">أكثر من 80% من السكان نزحوا من منازلهم، أحياء كاملة سويت بالأرض.</p>
+                    <span class="text-palestine-green font-bold text-lg tracking-widest">أزمة سكن خانقة</span>
+                </div>
+                <!-- Stat 3 -->
+                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm card-hover flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i data-lucide="droplets" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-serif">المياه والغذاء</h3>
+                    <p class="text-slate-600 mb-6">انعدام شبه كامل للمياه الصالحة للشرب، وتهديد حقيقي بمجاعة تلوح في الأفق.</p>
+                    <span class="text-blue-600 font-bold text-lg">نقص حاد في الموارد</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery / Visual Context -->
+        <section class="space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="lg:col-span-2 lg:row-span-2 rounded-3xl overflow-hidden relative group">
+                    <img src="https://images.unsplash.com/photo-1542385151-efd9000785a0?auto=format&fit=crop&q=80&w=1200" alt="Resilience" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
+                        <p class="text-white font-serif text-2xl italic">"سنبني ما تدمر، فنحن قوم نحب الحياة إذا ما استطعنا إليها سبيلا."</p>
+                    </div>
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-lg h-64">
+                    <img src="https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover">
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-lg h-64">
+                    <img src="https://images.unsplash.com/photo-1623519890618-971c0800de12?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover">
+                </div>
+                <div class="lg:col-span-2 rounded-3xl overflow-hidden shadow-lg h-72">
+                    <img src="https://images.unsplash.com/photo-1542317820-213c6902be55?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Quotes Section -->
+        <section id="resilience" class="py-20 bg-palestine-black text-white rounded-[4rem] text-center px-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-10 opacity-10">
+                <i data-lucide="quote" class="w-32 h-32"></i>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-8 relative z-10">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif leading-tight">"غزة هي المدينة التي تعجز كل القوى عن كسر إرادتها، فهي تسابق الفجر في كل يوم، وتغسل وجهها بماء البحر الصبور."</h2>
+                <div class="w-24 h-1 bg-palestine-red mx-auto"></div>
+                <p class="text-slate-400 text-xl font-light tracking-widest italic">— محمود درويش</p>
+            </div>
+        </section>
+
+        <!-- Support Call to Action -->
+        <section id="support" class="bg-white rounded-[3rem] p-12 shadow-2xl border border-slate-100 text-center space-y-10">
+            <div class="max-w-2xl mx-auto space-y-4">
+                <div class="inline-block p-4 bg-palestine-green/10 rounded-full mb-4">
+                    <i data-lucide="heart" class="w-10 h-10 text-palestine-green fill-palestine-green"></i>
+                </div>
+                <h2 class="text-4xl font-bold font-serif">كن جزءاً من التغيير</h2>
+                <p class="text-slate-500 text-lg">صوتك، تبرعك، ودعمك المعنوي يصنع فرقاً حقيقياً في حياة الناس هناك.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <h4 class="font-bold text-xl mb-2">النشر والتوعية</h4>
+                    <p class="text-sm text-slate-500 mb-6">ساهم في نشر الحقيقة والقصص الإنسانية للعالم.</p>
+                    <button class="text-palestine-red font-bold flex items-center justify-center gap-2 mx-auto"><i data-lucide="share-2"></i> شارك الآن</button>
+                </div>
+                <div class="p-8 bg-palestine-earth rounded-3xl border border-slate-200">
+                    <h4 class="font-bold text-xl mb-2">الدعم المالي</h4>
+                    <p class="text-sm text-slate-500 mb-6">تبرع للمؤسسات الإغاثية الموثوقة لتوفير المستلزمات الأساسية.</p>
+                    <button class="bg-palestine-black text-white px-6 py-2 rounded-xl text-sm font-bold">تبرع الآن</button>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                    <h4 class="font-bold text-xl mb-2">الدعم الطبي</h4>
+                    <p class="text-sm text-slate-500 mb-6">دعم القوافل الطبية والمشافي التي تعمل في الميدان.</p>
+                    <button class="text-palestine-green font-bold flex items-center justify-center gap-2 mx-auto"><i data-lucide="plus-circle"></i> سؤالي الطبي</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-palestine-black text-white pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
+            <div class="col-span-2 space-y-6">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl font-bold font-serif">غزة <span class="text-palestine-red">الأبية</span></span>
+                </div>
+                <p class="text-slate-400 text-lg leading-relaxed max-w-sm">موقع توثيقي مخصص لإيصال صوت الحق والواقع الإنساني من قلب قطاع غزة العزة.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-palestine-red transition-all"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-palestine-red transition-all"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-palestine-red transition-all"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-6 border-b border-white/10 pb-4">روابط سريعة</h4>
+                <ul class="space-y-4 text-slate-400 font-light">
+                    <li><a href="#" class="hover:text-white transition-colors">عن غزة</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">الواقع الميداني</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">تقارير إنسانية</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">كيف تساعد؟</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-6 border-b border-white/10 pb-4">تواصل</h4>
+                <p class="text-slate-400 text-sm mb-4">اشترك ليصلك آخر التقارير الموثقة من الميدان.</p>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="بريدك الإلكتروني" class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg outline-none focus:border-palestine-red flex-1">
+                    <button class="bg-palestine-red px-4 py-2 rounded-lg font-bold">انضم</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-10 border-t border-white/5 text-center text-slate-500 text-sm">
+            <p>&copy; 2024 بـوابة غزة الحرة. جميع الحقوق محفوظة لعدالة القضية.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Reveal on Scroll Effect (Simple CSS implementation)
+        const observeElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__fadeInUp');
+                        entry.target.classList.remove('opacity-0');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('animate__animated', 'opacity-0');
+                observer.observe(section);
+            });
+        };
+
+        window.onload = observeElements;
+    </script>
+</body>
+</html>
