@@ -3,112 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>غزة: نبض الصمود خلف الحصار</title>
-    <!-- استدعاء مكتبات التصميم والحركة -->
+    <title>غزة | الحقيقة المـحاصرة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #0a0a0a; color: #e5e5e5; }
-        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1543269664-76bc3997d9ea?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; }
-        .card:hover { transform: translateY(-10px); transition: all 0.3s ease; }
-        .accent-border { border-right: 4px solid #ef4444; }
+        :root {
+            --pal-red: #ee2a35;
+            --pal-green: #009736;
+            --pal-black: #000000;
+        }
+        body { font-family: 'Cairo', sans-serif; background-color: #f8f9fa; color: #1a1a1a; }
+        
+        /* تأثير الكوفية في الخلفية */
+        .keffiyeh-bg {
+            background-color: #ffffff;
+            background-image: radial-gradient(#000 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+            position: absolute; width: 100%; height: 100%; z-index: -1;
+        }
+
+        .flag-sidebar {
+            width: 10px;
+            height: 100%;
+            position: fixed;
+            right: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to bottom, var(--pal-black) 33%, var(--pal-green) 33% 66%, var(--pal-red) 66%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .border-pal { border-right: 6px solid var(--pal-red); }
+        .bg-pal-green { background-color: var(--pal-green); }
+        .bg-pal-red { background-color: var(--pal-red); }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="relative">
 
-    <!-- Header / Navbar -->
-    <nav class="p-6 flex justify-between items-center bg-black/50 backdrop-blur-md fixed w-full z-50">
-        <div class="text-2xl font-bold text-red-600 animate__animated animate__fadeInRight">غزة <span class="text-white font-light">تستغيث</span></div>
-        <div class="space-x-reverse space-x-6 hidden md:flex">
-            <a href="#about" class="hover:text-red-500">الحكاية</a>
-            <a href="#children" class="hover:text-red-500">الأطفال</a>
-            <a href="#donate" class="bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition">تبرع الآن</a>
+    <div class="keffiyeh-bg"></div>
+
+    <!-- شريط العلم الجانبي -->
+    <div class="flag-sidebar">
+        <div class="flex-1 bg-black"></div>
+        <div class="flex-1 bg-white"></div>
+        <div class="flex-1 bg-green-600"></div>
+        <div class="h-20 bg-red-600" style="clip-path: polygon(0 0, 100% 50%, 0 100%);"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="p-5 flex justify-between items-center bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="text-2xl font-black flex items-center">
+            <span class="text-black">فلسـ</span><span class="text-green-600">ـطين</span>
+            <span class="mr-2 w-3 h-3 bg-red-600 rounded-full animate-pulse"></span>
         </div>
+        <div class="hidden md:flex gap-8 font-bold">
+            <a href="#siege" class="hover:text-red-600 transition">الحصار</a>
+            <a href="#farce" class="hover:text-red-600 transition">المهزلة السياسية</a>
+            <a href="#children" class="hover:text-red-600 transition">الأطفال</a>
+        </div>
+        <a href="#donate" class="bg-pal-red text-white px-6 py-2 rounded shadow-lg hover:scale-105 transition">أغيثوا غزة</a>
     </nav>
 
     <!-- Hero Section -->
-    <header class="h-screen flex items-center justify-center text-center hero-gradient px-4">
-        <div class="animate__animated animate__fadeInUp">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6">غزة: صمودٌ تحت الحصار</h1>
-            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                ثمانية عشر عاماً من العزلة، لكن الأمل لا يموت. رحلة في تفاصيل الحياة اليومية لأكثر البقاع صبراً على وجه الأرض.
-            </p>
+    <header class="relative h-[80vh] flex items-center justify-center overflow-hidden bg-black text-white">
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1551806235-6629bc2445c2?q=80&w=1964&auto=format&fit=crop" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 text-center px-4 animate__animated animate__zoomIn">
+            <h1 class="text-6xl md:text-8xl font-black mb-4">غـزة</h1>
+            <p class="text-2xl md:text-3xl font-light tracking-widest border-y py-2 border-white/20">حيث تصمت القوانين وتتكلم الأمعاء الخاوية</p>
         </div>
     </header>
 
-    <!-- Section: The Siege (Facts) -->
-    <section id="about" class="py-20 px-6 container mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-            <div class="animate__animated animate__slideInRight">
-                <h2 class="text-3xl font-bold mb-6 accent-border pr-4">واقع الحصار</h2>
-                <p class="text-gray-400 mb-4 leading-loose">
-                    يعيش أكثر من 2.3 مليون نسمة في مساحة لا تتجاوز 365 كم²، مما يجعلها واحدة من أكثر المناطق اكتظاظاً في العالم. الحصار يطال كل شيء: الماء، الكهرباء، الدواء، وحتى أحلام الأطفال.
+    <!-- Section: The Reality of Occupation -->
+    <section id="siege" class="py-20 container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="animate__animated animate__fadeInRight">
+                <h2 class="text-4xl font-bold mb-8 border-pal pr-4 text-black">الإبادة الممنهجة</h2>
+                <p class="text-xl leading-relaxed text-gray-700 mb-6">
+                    ما يحدث في غزة ليس مجرد "نزاع"، بل هو تحويل أكبر مساحة جغرافية إلى سجن مفتوح. الاحتلال يتحكم في **السعرات الحرارية** التي تدخل لأجساد السكان، ويمنع دخول حتى أبسط أدوات الحياة.
                 </p>
-                <ul class="space-y-3">
-                    <li class="flex items-center text-red-400"><span class="ml-2">●</span> 95% من المياه غير صالحة للشرب.</li>
-                    <li class="flex items-center text-red-400"><span class="ml-2">●</span> انقطاع التيار الكهربائي يصل لـ 18 ساعة يومياً.</li>
-                    <li class="flex items-center text-red-400"><span class="ml-2">●</span> قيود صارمة على حركة الأفراد والبضائع.</li>
-                </ul>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-100 p-4 rounded border-b-4 border-green-600">
+                        <span class="block text-3xl font-bold">80%</span>
+                        <span class="text-sm">يعتمدون على المساعدات</span>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded border-b-4 border-red-600">
+                        <span class="block text-3xl font-bold">صفر</span>
+                        <span class="text-sm">منفذ حر للعالم</span>
+                    </div>
+                </div>
             </div>
-            <div class="rounded-lg overflow-hidden shadow-2xl animate__animated animate__zoomIn">
-                <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2070&auto=format&fit=crop" alt="Gaza Siege" class="hover:scale-105 transition duration-500">
+            <div class="relative group">
+                <div class="absolute -inset-2 bg-gradient-to-r from-green-600 to-red-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition"></div>
+                <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?q=80&w=2070" class="relative rounded-lg shadow-2xl">
             </div>
         </div>
     </section>
 
-    <!-- Section: Children of Gaza -->
-    <section id="children" class="bg-zinc-900 py-20 px-6">
-        <div class="container mx-auto text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">أطفال غزة: أحلامٌ بين الركام</h2>
-            <p class="text-gray-400">كيف يقضي الصغار يومهم تحت الحصار؟</p>
+    <!-- Section: The Political Farce (USA & Occupation) -->
+    <section id="farce" class="py-20 bg-black text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-10 text-red-500 italic animate__animated animate__flash animate__infinite animate__slow">المهزلة الدولية</h2>
+                <div class="bg-zinc-900 p-10 rounded-3xl border border-zinc-800 shadow-2xl">
+                    <p class="text-2xl leading-relaxed mb-8">
+                        بينما تُلقى "خطابات حقوق الإنسان" في واشنطن، تُلقى **القنابل الذكية** الأمريكية الصنع على خيام النازحين في رفح وغزة. 
+                    </p>
+                    <div class="space-y-6 text-right inline-block">
+                        <div class="flex items-start gap-4">
+                            <span class="text-red-500 text-2xl font-bold">●</span>
+                            <p><span class="text-green-500 font-bold">الفيتو الأمريكي:</span> الحائط الذي يصد أي محاولة دولية لوقف نزيف الدم.</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-red-500 text-2xl font-bold">●</span>
+                            <p><span class="text-green-500 font-bold">الجسر الجوي:</span> تدفق مستمر للأسلحة تحت غطاء "الدفاع عن النفس".</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="text-red-500 text-2xl font-bold">●</span>
+                            <p><span class="text-green-500 font-bold">الصمت المخزي:</span> تواطؤ دولي يرى الجلاد ضحية، والضحية إرهابياً.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="grid md:grid-cols-3 gap-8 container mx-auto">
-            <!-- Card 1 -->
-            <div class="bg-black p-6 rounded-xl card border border-zinc-800">
-                <div class="h-48 bg-zinc-800 mb-6 rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" class="object-cover w-full h-full opacity-70">
+    <!-- Section: Children (The Silent Witness) -->
+    <section id="children" class="py-20 container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">أطفال غزة: كبارٌ قبل الأوان</h2>
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="group relative overflow-hidden rounded-2xl">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent p-6 flex flex-col justify-end text-white">
+                    <h3 class="text-xl font-bold">طفولة خلف الجدار</h3>
+                    <p class="text-sm opacity-80">نشأوا ولم يعرفوا معنى الطائرة إلا كأداة للموت.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-red-500">التعليم تحت التحدي</h3>
-                <p class="text-gray-400 text-sm">يذهب الأطفال للمدارس التي غالباً ما تعمل بنظام الفترتين، متحدين نقص الأدوات والقرطاسية، ومحولين الخوف إلى رغبة في المعرفة.</p>
             </div>
-            <!-- Card 2 -->
-            <div class="bg-black p-6 rounded-xl card border border-zinc-800">
-                <div class="h-48 bg-zinc-800 mb-6 rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1972&auto=format&fit=crop" class="object-cover w-full h-full opacity-70">
+            <!-- المزيد من الصور الافتراضية المعبرة -->
+            <div class="group relative overflow-hidden rounded-2xl">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent p-6 flex flex-col justify-end text-white">
+                    <h3 class="text-xl font-bold">الجوع كسلاح</h3>
+                    <p class="text-sm opacity-80">يواجه صغارنا سوء التغذية الحاد نتيجة إغلاق المعابر.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-red-500">اللعب كفعل مقاومة</h3>
-                <p class="text-gray-400 text-sm">في أزقة المخيمات، يصنع الأطفال طائرات ورقية يطيرونها نحو السماء، كرمز للحرية التي لم يروها وراء الأسلاك الشائكة.</p>
             </div>
-            <!-- Card 3 -->
-            <div class="bg-black p-6 rounded-xl card border border-zinc-800">
-                <div class="h-48 bg-zinc-800 mb-6 rounded-lg overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1473649085228-583485e6e4d7?q=80&w=1932&auto=format&fit=crop" class="object-cover w-full h-full opacity-70">
+            <div class="group relative overflow-hidden rounded-2xl">
+                <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent p-6 flex flex-col justify-end text-white">
+                    <h3 class="text-xl font-bold">البحث عن أمان معدوم</h3>
+                    <p class="text-sm opacity-80">كل مدرسة هي ملجأ، وكل ملجأ هو هدف محتمل.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-red-500">المرونة النفسية</h3>
-                <p class="text-gray-400 text-sm">رغم الصدمات، تبتسم وجوه الأطفال في غزة لتعلم العالم درساً في "المرونة"، حيث يبحثون عن الفرح في أبسط الأشياء.</p>
             </div>
         </div>
     </section>
 
     <!-- Donation Section -->
-    <section id="donate" class="py-24 bg-red-600 text-white text-center">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-8">كن جزءاً من التغيير</h2>
-            <p class="text-xl mb-12 max-w-2xl mx-auto">تبرعك يساهم في توفير الدواء، الغذاء، والدعم النفسي للأطفال والعائلات المتضررة من الحصار.</p>
-            
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="https://www.unrwa.org/ar" target="_blank" class="bg-white text-red-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg">الأونروا (UNRWA)</a>
-                <a href="https://www.palestinercs.org/ar" target="_blank" class="bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-zinc-800 transition shadow-lg">الهلال الأحمر الفلسطيني</a>
-                <a href="https://www.map.org.uk/" target="_blank" class="bg-zinc-100 text-red-600 px-8 py-3 rounded-lg font-bold hover:bg-white transition shadow-lg">العون الطبي للفلسطينيين</a>
+    <section id="donate" class="bg-zinc-100 py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-black mb-6">لا تكتفِ بالمشاهدة.. كُن عوناً</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://www.map.org.uk/donate" class="bg-black text-white px-10 py-4 rounded-full font-bold hover:bg-zinc-800 transition shadow-xl">دعم طبي عاجل</a>
+                <a href="https://donate.unrwa.org/" class="bg-pal-green text-white px-10 py-4 rounded-full font-bold hover:bg-green-700 transition shadow-xl">إغاثة اللاجئين</a>
             </div>
+            <p class="mt-8 text-gray-500">الحقيقة لا تموت، لكن البشر يموتون من الجوع. ساهم الآن.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 text-center border-t border-zinc-800">
-        <p class="text-gray-500">تم إنشاء هذا الموقع لنشر الوعي حول القضية الإنسانية في غزة &copy; 2026</p>
+    <footer class="bg-black text-white py-12 text-center">
+        <div class="flex justify-center gap-2 mb-4">
+            <div class="w-4 h-4 bg-white"></div>
+            <div class="w-4 h-4 bg-green-600"></div>
+            <div class="w-4 h-4 bg-red-600"></div>
+        </div>
+        <p class="text-sm opacity-50 italic">لن ننسى، ولن نغفر للمجتمع الدولي صمته.</p>
     </footer>
 
 </body>
