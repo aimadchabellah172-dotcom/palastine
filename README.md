@@ -1,2 +1,1 @@
-# palastine
-save plastine
+Python academey
