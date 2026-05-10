@@ -1,192 +1,2075 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>غزة | الحقيقة المـحاصرة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --pal-red: #ee2a35;
-            --pal-green: #009736;
-            --pal-black: #000000;
-        }
-        body { font-family: 'Cairo', sans-serif; background-color: #f8f9fa; color: #1a1a1a; }
-        
-        /* تأثير الكوفية في الخلفية */
-        .keffiyeh-bg {
-            background-color: #ffffff;
-            background-image: radial-gradient(#000 0.5px, transparent 0.5px);
-            background-size: 20px 20px;
-            opacity: 0.05;
-            position: absolute; width: 100%; height: 100%; z-index: -1;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>أكاديمية بايثون | Python Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"/>
+<style>
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#1e2a3b;
+  --fg:#e6edf3;--fg2:#8b949e;--fg3:#6e7681;
+  --blue:#3b82f6;--blue-dark:#1d4ed8;--blue-darker:#1e3a8a;
+  --yellow:#f59e0b;--yellow-dark:#d97706;--yellow-darker:#92400e;
+  --green:#22c55e;--red:#ef4444;--purple:#a78bfa;
+  --border:#30363d;--card:#161b22;--card2:#1c2333;
+  --radius:12px;--radius-sm:8px;
+  --font:'Cairo',sans-serif;--mono:'JetBrains Mono',monospace;
+  --shadow:0 4px 24px rgba(0,0,0,0.4);
+  --glow-blue:0 0 30px rgba(59,130,246,0.25);
+  --glow-yellow:0 0 30px rgba(245,158,11,0.25);
+}
+.light{
+  --bg:#f0f4ff;--bg2:#ffffff;--bg3:#e8f0fe;
+  --fg:#0f172a;--fg2:#475569;--fg3:#94a3b8;
+  --border:#e2e8f0;--card:#ffffff;--card2:#f8fafc;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--fg);
+  font-family:var(--font);font-size:16px;line-height:1.7;
+  transition:background .3s,color .3s;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--yellow)}
 
-        .flag-sidebar {
-            width: 10px;
-            height: 100%;
-            position: fixed;
-            right: 0;
-            top: 0;
-            display: flex;
-            flex-direction: column;
-            z-index: 100;
-        }
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--blue-darker);border-radius:3px}
 
-        .gradient-text {
-            background: linear-gradient(to bottom, var(--pal-black) 33%, var(--pal-green) 33% 66%, var(--pal-red) 66%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+/* ─── NAVBAR ─── */
+#navbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,17,23,.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;
+}
+.light #navbar{background:rgba(240,244,255,.85)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem}
+.nav-logo svg{flex-shrink:0}
+.logo-text{background:linear-gradient(135deg,var(--blue),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{
+  padding:6px 14px;border-radius:var(--radius-sm);
+  color:var(--fg2);font-size:.9rem;font-weight:600;transition:.2s;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:var(--blue);background:rgba(59,130,246,.1);
+}
+.nav-controls{display:flex;gap:8px;align-items:center}
+.icon-btn{
+  width:36px;height:36px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--card);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--fg2);font-size:1rem;transition:.2s;
+}
+.icon-btn:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.08)}
+.lang-btn{
+  padding:4px 12px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--card);
+  cursor:pointer;color:var(--fg2);font-size:.8rem;font-weight:700;
+  transition:.2s;letter-spacing:.05em;
+}
+.lang-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+.start-btn{
+  padding:8px 18px;border-radius:var(--radius-sm);
+  background:var(--blue);color:#fff;font-weight:700;font-size:.9rem;
+  border:none;cursor:pointer;transition:.2s;font-family:var(--font);
+}
+.start-btn:hover{background:var(--blue-dark);box-shadow:var(--glow-blue)}
 
-        .border-pal { border-right: 6px solid var(--pal-red); }
-        .bg-pal-green { background-color: var(--pal-green); }
-        .bg-pal-red { background-color: var(--pal-red); }
-    </style>
+/* ─── HERO ─── */
+#hero{
+  min-height:calc(100vh - 64px);
+  display:flex;align-items:center;
+  background:radial-gradient(ellipse at 20% 50%,rgba(59,130,246,.08) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(245,158,11,.06) 0%,transparent 60%),
+             var(--bg);
+  padding:60px 24px;position:relative;overflow:hidden;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(59,130,246,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(59,130,246,.05) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.hero-content{max-width:1200px;margin:0 auto;width:100%;display:flex;gap:60px;align-items:center;flex-wrap:wrap}
+.hero-text{flex:1;min-width:300px;space-y:20px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:50px;
+  border:1px solid rgba(59,130,246,.4);background:rgba(59,130,246,.08);
+  color:var(--blue);font-size:.85rem;font-weight:600;margin-bottom:24px;
+}
+.hero-title{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:20px}
+.hero-title .blue{color:var(--blue)}
+.hero-title .yellow{
+  background:linear-gradient(135deg,var(--yellow),#fcd34d);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-subtitle{color:var(--fg2);font-size:1.1rem;max-width:560px;margin-bottom:32px;line-height:1.8}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.btn-primary{
+  padding:12px 28px;border-radius:var(--radius-sm);background:var(--blue);
+  color:#fff;font-weight:700;font-size:1rem;border:none;cursor:pointer;
+  font-family:var(--font);transition:.25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--blue-dark);box-shadow:var(--glow-blue);transform:translateY(-1px)}
+.btn-outline{
+  padding:12px 28px;border-radius:var(--radius-sm);background:transparent;
+  color:var(--fg);font-weight:700;font-size:1rem;
+  border:1px solid var(--border);cursor:pointer;font-family:var(--font);transition:.25s;
+}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.06)}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  padding:4px 12px;border-radius:6px;border:1px solid var(--border);
+  background:var(--card);color:var(--fg2);font-family:var(--mono);font-size:.78rem;
+}
+.hero-code-window{flex:1;min-width:300px;max-width:520px}
+
+/* ─── CODE WINDOW ─── */
+.code-window{
+  border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);background:#0d1117;
+  box-shadow:var(--shadow),var(--glow-blue);
+}
+.code-chrome{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;background:#161b22;border-bottom:1px solid var(--border);
+}
+.code-dots{display:flex;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.code-filename{font-family:var(--mono);font-size:.8rem;color:#6e7681}
+.code-status{font-family:var(--mono);font-size:.75rem;color:#22c55e}
+.code-body{padding:20px;font-family:var(--mono);font-size:.88rem;line-height:1.8;min-height:240px}
+.code-body .line{display:flex;gap:16px;white-space:pre}
+.code-body .ln{color:#484f58;width:20px;text-align:right;flex-shrink:0;user-select:none}
+.c-blue{color:#79c0ff}.c-green{color:#a5d6ff}.c-yellow{color:#e3b341}
+.c-purple{color:#d2a8ff}.c-gray{color:#8b949e}.c-white{color:#e6edf3}
+.code-output{
+  border-top:1px solid var(--border);background:#080d12;
+  padding:12px 20px;
+}
+.code-output-label{display:flex;align-items:center;gap:6px;color:#484f58;font-family:var(--mono);font-size:.75rem;margin-bottom:6px}
+.code-output p{font-family:var(--mono);font-size:.85rem;color:#a5d6ff}
+#cursor-blink{display:inline-block;width:8px;height:16px;background:var(--blue);animation:blink .7s infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ─── SECTIONS ─── */
+section{padding:80px 24px}
+.container{max-width:1100px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:56px}
+.section-badge{
+  display:inline-block;padding:4px 16px;border-radius:50px;
+  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);
+  color:var(--blue);font-size:.8rem;font-weight:700;margin-bottom:12px;letter-spacing:.08em;
+}
+.section-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;margin-bottom:12px}
+.section-subtitle{color:var(--fg2);font-size:1rem;max-width:600px;margin:0 auto}
+h2 .gradient{background:linear-gradient(135deg,var(--blue),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ─── STATS ─── */
+#stats{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 24px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.stat-card{
+  text-align:center;padding:24px;border-radius:var(--radius);
+  background:var(--bg);border:1px solid var(--border);transition:.2s;
+}
+.stat-card:hover{border-color:var(--blue);box-shadow:var(--glow-blue)}
+.stat-icon{font-size:1.8rem;margin-bottom:8px}
+.stat-val{font-size:2rem;font-weight:800;color:var(--blue)}
+.stat-label{color:var(--fg2);font-size:.85rem;font-weight:600}
+
+/* ─── STAGES ─── */
+#stages{background:var(--bg)}
+.stages-grid{display:grid;gap:16px}
+.stage-card{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:24px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--border);
+  cursor:pointer;transition:.25s;
+}
+.stage-card:hover{border-color:var(--blue);box-shadow:var(--glow-blue)}
+.stage-card.completed{border-color:var(--green);background:rgba(34,197,94,.05)}
+.stage-card.active{border-color:var(--blue);background:rgba(59,130,246,.05)}
+.stage-num{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:1.1rem;flex-shrink:0;
+  background:var(--blue-darker);color:var(--blue);
+}
+.stage-card.completed .stage-num{background:rgba(34,197,94,.15);color:var(--green)}
+.stage-info{flex:1}
+.stage-title{font-weight:700;font-size:1rem;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.stage-desc{color:var(--fg2);font-size:.88rem;margin-bottom:10px}
+.stage-topics{display:flex;flex-wrap:wrap;gap:6px}
+.stage-topic{
+  padding:2px 10px;border-radius:20px;font-size:.75rem;font-weight:600;font-family:var(--mono);
+  background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.2);
+}
+.stage-card.completed .stage-topic{background:rgba(34,197,94,.1);color:var(--green);border-color:rgba(34,197,94,.2)}
+.stage-progress{display:flex;align-items:center;gap:10px;margin-top:12px}
+.progress-bar{flex:1;height:4px;border-radius:2px;background:var(--border);overflow:hidden}
+.progress-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--yellow));transition:width .5s}
+.stage-check{font-size:1.2rem}
+.overall-progress{
+  margin-bottom:32px;padding:20px 24px;
+  border-radius:var(--radius);background:var(--card2);border:1px solid var(--border);
+}
+.overall-progress h3{font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between}
+.overall-bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden}
+.overall-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--yellow));transition:width .6s}
+
+/* ─── CONTENT SECTION (tutorial chapters) ─── */
+#content{background:var(--bg2)}
+.chapters-nav{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;
+  padding:16px;border-radius:var(--radius);background:var(--bg);border:1px solid var(--border);
+}
+.chapter-tab{
+  padding:8px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);
+  background:transparent;color:var(--fg2);cursor:pointer;font-family:var(--font);
+  font-size:.875rem;font-weight:600;transition:.2s;
+}
+.chapter-tab:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.06)}
+.chapter-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.chapter-panel{display:none}
+.chapter-panel.active{display:block}
+.chapter-title{
+  font-size:1.8rem;font-weight:800;margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+}
+.chapter-title .icon{font-size:1.4rem}
+.chapter-intro{color:var(--fg2);font-size:1rem;margin-bottom:32px;max-width:700px;line-height:1.8}
+
+/* ─── LESSON CARDS within chapters ─── */
+.lesson-block{
+  margin-bottom:36px;padding:28px;border-radius:var(--radius);
+  background:var(--bg);border:1px solid var(--border);
+}
+.lesson-block:hover{border-color:rgba(59,130,246,.3)}
+.lesson-block h3{
+  font-size:1.15rem;font-weight:700;margin-bottom:4px;color:var(--fg);
+  display:flex;align-items:center;gap:10px;
+}
+.lesson-block h3 .lnum{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:8px;font-size:.8rem;font-weight:700;
+  background:var(--blue-darker);color:var(--blue);flex-shrink:0;
+}
+.lesson-block p{color:var(--fg2);font-size:.95rem;margin-bottom:16px;line-height:1.8}
+.lesson-block ul,.lesson-block ol{padding-inline-start:20px;color:var(--fg2);font-size:.95rem;line-height:2}
+.lesson-block ul li,.lesson-block ol li{margin-bottom:4px}
+.lesson-block table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+.lesson-block th{
+  padding:10px 14px;background:var(--bg3);color:var(--blue);
+  font-weight:700;text-align:start;border-bottom:2px solid var(--blue-darker);
+}
+.lesson-block td{
+  padding:10px 14px;border-bottom:1px solid var(--border);color:var(--fg);
+}
+.lesson-block tr:hover td{background:rgba(59,130,246,.04)}
+.note{
+  padding:14px 18px;border-radius:var(--radius-sm);
+  border-inline-start:3px solid var(--blue);background:rgba(59,130,246,.07);
+  color:var(--fg2);font-size:.9rem;margin:16px 0;
+}
+.note.yellow{border-color:var(--yellow);background:rgba(245,158,11,.07)}
+.note.green{border-color:var(--green);background:rgba(34,197,94,.07)}
+
+/* ─── CODE BLOCKS ─── */
+.code-wrap{position:relative;margin:16px 0;border-radius:var(--radius-sm);overflow:hidden}
+.code-wrap pre{margin:0;border-radius:var(--radius-sm);font-size:.875rem}
+.copy-btn{
+  position:absolute;top:8px;inset-inline-end:8px;
+  padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);color:#8b949e;
+  cursor:pointer;font-size:.75rem;font-family:var(--font);transition:.2s;
+}
+.copy-btn:hover{background:rgba(59,130,246,.3);color:#fff}
+.copy-btn.copied{background:rgba(34,197,94,.3);color:var(--green)}
+
+/* ─── TTK SPECIAL ─── */
+.ttk-widget-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:16px 0}
+.ttk-widget-card{
+  padding:14px;border-radius:var(--radius-sm);
+  background:var(--card2);border:1px solid var(--border);
+}
+.ttk-widget-card strong{display:block;color:var(--blue);font-family:var(--mono);font-size:.85rem;margin-bottom:4px}
+.ttk-widget-card span{color:var(--fg2);font-size:.82rem}
+.style-property{
+  display:grid;grid-template-columns:1fr 2fr;gap:8px;
+  padding:10px 14px;border-radius:var(--radius-sm);
+  background:var(--card2);border:1px solid var(--border);margin:6px 0;
+  align-items:start;font-size:.88rem;
+}
+.style-property .prop{color:var(--yellow);font-family:var(--mono);font-weight:600}
+.style-property .desc{color:var(--fg2)}
+.theme-badges{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.theme-badge{
+  padding:6px 14px;border-radius:50px;font-family:var(--mono);font-size:.8rem;
+  font-weight:600;border:1px solid var(--border);background:var(--card2);color:var(--fg2);
+}
+.theme-badge.highlight{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.1)}
+
+/* ─── RESOURCES ─── */
+#resources{background:var(--bg)}
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.resource-card{
+  padding:24px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--border);transition:.25s;
+}
+.resource-card:hover{border-color:var(--blue);box-shadow:var(--glow-blue);transform:translateY(-2px)}
+.resource-icon{font-size:2rem;margin-bottom:12px}
+.resource-card h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.resource-card p{color:var(--fg2);font-size:.85rem;margin-bottom:16px;line-height:1.6}
+.resource-link{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:var(--radius-sm);
+  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);
+  color:var(--blue);font-size:.875rem;font-weight:600;transition:.2s;
+}
+.resource-link:hover{background:var(--blue);color:#fff}
+.resource-card.official{border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.04)}
+.resource-card.official h3{color:var(--yellow)}
+.resource-card.official .resource-link{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.2);color:var(--yellow)}
+.resource-card.official .resource-link:hover{background:var(--yellow);color:#0d1117}
+
+/* ─── QUIZ ─── */
+#quiz{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.quiz-start{text-align:center;padding:40px}
+.quiz-start p{color:var(--fg2);margin:12px 0 28px;font-size:1rem}
+.quiz-container{display:none;max-width:700px;margin:0 auto}
+.quiz-progress-wrap{margin-bottom:32px}
+.quiz-meta{display:flex;justify-content:space-between;font-size:.875rem;color:var(--fg2);margin-bottom:8px}
+.quiz-bar{height:6px;border-radius:3px;background:var(--border);overflow:hidden}
+.quiz-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--yellow));transition:width .4s}
+.quiz-q{
+  padding:28px;border-radius:var(--radius);
+  background:var(--bg);border:1px solid var(--border);margin-bottom:20px;
+}
+.quiz-q-label{font-size:.8rem;font-weight:700;color:var(--blue);margin-bottom:8px;letter-spacing:.06em}
+.quiz-q h3{font-size:1.05rem;font-weight:700;line-height:1.6;margin-bottom:20px}
+.quiz-q .code-snippet{
+  font-family:var(--mono);font-size:.85rem;padding:12px 16px;
+  background:#0d1117;border-radius:var(--radius-sm);color:#a5d6ff;
+  margin-bottom:16px;white-space:pre;overflow-x:auto;
+}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-opt{
+  padding:12px 18px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--card2);
+  cursor:pointer;text-align:start;font-family:var(--font);
+  font-size:.95rem;color:var(--fg);transition:.2s;display:flex;gap:12px;align-items:center;
+}
+.quiz-opt:hover:not([disabled]){border-color:var(--blue);background:rgba(59,130,246,.08);color:var(--blue)}
+.quiz-opt.correct{border-color:var(--green)!important;background:rgba(34,197,94,.1)!important;color:var(--green)!important}
+.quiz-opt.wrong{border-color:var(--red)!important;background:rgba(239,68,68,.1)!important;color:var(--red)!important}
+.quiz-opt .opt-letter{
+  width:26px;height:26px;border-radius:8px;background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;flex-shrink:0;font-family:var(--mono);
+}
+.quiz-nav{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
+.quiz-result{
+  text-align:center;padding:48px 24px;
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);
+  display:none;
+}
+.quiz-score-circle{
+  width:140px;height:140px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin:0 auto 24px;border:4px solid var(--blue);background:rgba(59,130,246,.08);
+}
+.quiz-score-num{font-size:2.8rem;font-weight:900;color:var(--blue);line-height:1}
+.quiz-score-total{font-size:.9rem;color:var(--fg2)}
+.quiz-grade{font-size:1.5rem;font-weight:800;margin-bottom:8px}
+.quiz-grade-desc{color:var(--fg2);margin-bottom:24px}
+.quiz-details{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:28px}
+.quiz-detail-item{padding:8px 20px;border-radius:50px;font-size:.875rem;font-weight:600}
+.quiz-detail-item.good{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.quiz-detail-item.bad{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2)}
+.quiz-detail-item.info{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.2)}
+
+/* ─── COMMENTS ─── */
+#comments{background:var(--bg)}
+.comments-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:700px){.comments-layout{grid-template-columns:1fr}}
+.comment-form{padding:24px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border)}
+.comment-form h3{font-weight:700;margin-bottom:20px;font-size:1.05rem}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.875rem;font-weight:600;color:var(--fg2);margin-bottom:6px}
+.form-input,.form-textarea{
+  width:100%;padding:10px 14px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--bg2);color:var(--fg);
+  font-family:var(--font);font-size:.95rem;transition:.2s;
+}
+.form-input:focus,.form-textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+.form-textarea{height:100px;resize:vertical}
+.form-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.comments-list-wrap{}
+.comments-list-wrap h3{font-weight:700;margin-bottom:20px;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.comment-list{display:flex;flex-direction:column;gap:12px}
+.comment-item{
+  padding:16px;border-radius:var(--radius-sm);
+  background:var(--card);border:1px solid var(--border);
+}
+.comment-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.comment-author{font-weight:700;font-size:.9rem;color:var(--blue)}
+.comment-time{font-size:.75rem;color:var(--fg3)}
+.comment-lesson{font-size:.75rem;color:var(--fg3);font-family:var(--mono);display:block;margin-bottom:4px}
+.comment-body{color:var(--fg);font-size:.9rem;line-height:1.6}
+.comment-del{background:none;border:none;cursor:pointer;color:var(--fg3);font-size:1rem;padding:2px 6px}
+.comment-del:hover{color:var(--red)}
+.empty-comments{text-align:center;padding:40px;color:var(--fg2)}
+.download-btn{
+  display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+  border-radius:var(--radius-sm);background:rgba(34,197,94,.1);
+  border:1px solid rgba(34,197,94,.2);color:var(--green);
+  cursor:pointer;font-family:var(--font);font-size:.875rem;font-weight:600;transition:.2s;
+}
+.download-btn:hover{background:var(--green);color:#fff}
+#lesson-filter{
+  padding:6px 12px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--card2);color:var(--fg);
+  font-family:var(--font);font-size:.85rem;
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:48px 24px 24px;
+}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand h3{font-weight:800;font-size:1.1rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.footer-brand p{color:var(--fg2);font-size:.88rem;line-height:1.7;max-width:320px}
+.footer-col h4{font-weight:700;font-size:.9rem;margin-bottom:14px;color:var(--fg)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:8px}
+.footer-col a{color:var(--fg2);font-size:.875rem;transition:.2s}
+.footer-col a:hover{color:var(--blue)}
+.footer-bottom{
+  max-width:1100px;margin:0 auto;
+  border-top:1px solid var(--border);padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  color:var(--fg2);font-size:.8rem;
+}
+.online-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;margin-inline-end:6px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* ─── ANIMATIONS ─── */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.fade-in.visible{opacity:1;transform:none}
+.stagger-1{transition-delay:.1s}
+.stagger-2{transition-delay:.2s}
+.stagger-3{transition-delay:.3s}
+.stagger-4{transition-delay:.4s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero-content{flex-direction:column}
+  .hero-code-window{max-width:100%}
+}
+</style>
 </head>
-<body class="relative">
+<body class="dark">
 
-    <div class="keffiyeh-bg"></div>
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e3a8a"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient>
+        <linearGradient id="gy" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
+        <linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="url(#bg1)"/>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity=".5"/>
+      <path d="M35 28C35 20 42 16 50 16C58 16 65 20 65 28L65 42C65 46 62 48 58 48L50 48C45 48 42 50 42 54L42 58" stroke="url(#gb)" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <path d="M58 52C58 56 58 58 58 62L58 72C58 80 52 84 44 84C36 84 34 80 34 72L34 58C34 54 37 52 42 52L50 52C55 52 58 50 58 46" stroke="url(#gy)" stroke-width="9" stroke-linecap="round" fill="none"/>
+      <circle cx="50" cy="22" r="3" fill="#fbbf24"/><circle cx="50" cy="22" r="1.5" fill="#1e3a8a"/>
+      <circle cx="44" cy="78" r="3" fill="#60a5fa"/><circle cx="44" cy="78" r="1.5" fill="#1e3a8a"/>
+      <circle cx="50" cy="48" r="4" fill="#fbbf24" opacity=".8"/>
+    </svg>
+    <span class="logo-text" id="logo-text">أكاديمية بايثون</span>
+  </div>
 
-    <!-- شريط العلم الجانبي -->
-    <div class="flag-sidebar">
-        <div class="flex-1 bg-black"></div>
-        <div class="flex-1 bg-white"></div>
-        <div class="flex-1 bg-green-600"></div>
-        <div class="h-20 bg-red-600" style="clip-path: polygon(0 0, 100% 50%, 0 100%);"></div>
+  <div class="nav-links">
+    <a href="#hero" class="active" data-key="nav.home">الرئيسية</a>
+    <a href="#stages" data-key="nav.stages">مراحل التعلم</a>
+    <a href="#content" data-key="nav.content">الدروس</a>
+    <a href="#resources" data-key="nav.resources">المصادر</a>
+    <a href="#quiz" data-key="nav.quiz">الاختبار</a>
+    <a href="#comments" data-key="nav.comments">التعليقات</a>
+  </div>
+
+  <div class="nav-controls">
+    <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+    <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme" id="theme-btn">🌙</button>
+    <button class="start-btn" onclick="scrollTo('#stages')" data-key="nav.start">ابدأ التعلم</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <svg width="16" height="16" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" fill="#1e3a8a"/><path d="M35 28C35 20 42 16 50 16C58 16 65 20 65 28L65 42C65 46 62 48 58 48L50 48C45 48 42 50 42 54L42 58" stroke="#3b82f6" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M58 52L58 72C58 80 52 84 44 84C36 84 34 80 34 72L34 58C34 54 37 52 42 52L50 52C55 52 58 50 58 46" stroke="#f59e0b" stroke-width="9" stroke-linecap="round" fill="none"/></svg>
+        <span data-key="hero.badge">منصة تعليمية عربية متخصصة</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="blue" data-key="hero.t1">أكاديمية</span><br>
+        <span class="yellow" data-key="hero.t2">بايثون</span>
+      </h1>
+      <p class="hero-subtitle" data-key="hero.subtitle">
+        المنصة العربية الشاملة لتعلم لغة بايثون. من الأساسيات إلى بناء تطبيقات سطح المكتب مع Tkinter و ttk.Style. تعلم، طبق، واحترف.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollTo('#stages')" data-key="hero.cta">ابدأ التعلم الآن ←</button>
+        <button class="btn-outline" onclick="scrollTo('#resources')" data-key="hero.res">المصادر الرسمية</button>
+      </div>
+      <div class="hero-tags">
+        <span class="tag">Python 3.12</span>
+        <span class="tag">tkinter</span>
+        <span class="tag">ttk</span>
+        <span class="tag">ttk.Style</span>
+        <span class="tag">OOP</span>
+        <span class="tag">async/await</span>
+      </div>
     </div>
+    <div class="hero-code-window">
+      <div class="code-window">
+        <div class="code-chrome">
+          <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+          <span class="code-filename">academy.py</span>
+          <span class="code-status">● running</span>
+        </div>
+        <div class="code-body" id="hero-code"></div>
+        <div class="code-output" id="hero-output" style="display:none">
+          <div class="code-output-label">▶ Output</div>
+          <p>أهلاً بك في أكاديمية بايثون! 🐍</p>
+          <p>{'level': 'Beginner→Advanced', 'status': 'Ready'}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Navigation -->
-    <nav class="p-5 flex justify-between items-center bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <div class="text-2xl font-black flex items-center">
-            <span class="text-black">فلسـ</span><span class="text-green-600">ـطين</span>
-            <span class="mr-2 w-3 h-3 bg-red-600 rounded-full animate-pulse"></span>
-        </div>
-        <div class="hidden md:flex gap-8 font-bold">
-            <a href="#siege" class="hover:text-red-600 transition">الحصار</a>
-            <a href="#farce" class="hover:text-red-600 transition">المهزلة السياسية</a>
-            <a href="#children" class="hover:text-red-600 transition">الأطفال</a>
-        </div>
-        <a href="#donate" class="bg-pal-red text-white px-6 py-2 rounded shadow-lg hover:scale-105 transition">أغيثوا غزة</a>
-    </nav>
+<!-- STATS -->
+<div id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card fade-in"><div class="stat-icon">📚</div><div class="stat-val">6</div><div class="stat-label" data-key="stat.chapters">مراحل تعليمية</div></div>
+      <div class="stat-card fade-in stagger-1"><div class="stat-icon">🧩</div><div class="stat-val">17</div><div class="stat-label" data-key="stat.widgets">TTK Widgets</div></div>
+      <div class="stat-card fade-in stagger-2"><div class="stat-icon">🎓</div><div class="stat-val">15</div><div class="stat-label" data-key="stat.quiz">أسئلة اختبار</div></div>
+      <div class="stat-card fade-in stagger-3"><div class="stat-icon">🌐</div><div class="stat-val">2</div><div class="stat-label" data-key="stat.lang">لغات المحتوى</div></div>
+    </div>
+  </div>
+</div>
 
-    <!-- Hero Section -->
-    <header class="relative h-[80vh] flex items-center justify-center overflow-hidden bg-black text-white">
-        <div class="absolute inset-0 opacity-40">
-            <img src="https://images.unsplash.com/photo-1551806235-6629bc2445c2?q=80&w=1964&auto=format&fit=crop" class="w-full h-full object-cover">
-        </div>
-        <div class="relative z-10 text-center px-4 animate__animated animate__zoomIn">
-            <h1 class="text-6xl md:text-8xl font-black mb-4">غـزة</h1>
-            <p class="text-2xl md:text-3xl font-light tracking-widest border-y py-2 border-white/20">حيث تصمت القوانين وتتكلم الأمعاء الخاوية</p>
-        </div>
-    </header>
+<!-- STAGES -->
+<section id="stages">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-key="stages.badge">مراحل التعلم</div>
+      <h2 class="section-title" data-key="stages.title">خطة <span class="gradient">تعلمك</span></h2>
+      <p class="section-subtitle" data-key="stages.sub">اتبع المراحل بالترتيب لبناء معرفة متراكمة وصحيحة</p>
+    </div>
+    <div class="overall-progress">
+      <h3><span data-key="stages.progress">تقدمك الإجمالي</span><span id="progress-pct">0%</span></h3>
+      <div class="overall-bar"><div class="overall-fill" id="overall-fill" style="width:0%"></div></div>
+    </div>
+    <div class="stages-grid" id="stages-grid"></div>
+  </div>
+</section>
 
-    <!-- Section: The Reality of Occupation -->
-    <section id="siege" class="py-20 container mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="animate__animated animate__fadeInRight">
-                <h2 class="text-4xl font-bold mb-8 border-pal pr-4 text-black">الإبادة الممنهجة</h2>
-                <p class="text-xl leading-relaxed text-gray-700 mb-6">
-                    ما يحدث في غزة ليس مجرد "نزاع"، بل هو تحويل أكبر مساحة جغرافية إلى سجن مفتوح. الاحتلال يتحكم في **السعرات الحرارية** التي تدخل لأجساد السكان، ويمنع دخول حتى أبسط أدوات الحياة.
-                </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-gray-100 p-4 rounded border-b-4 border-green-600">
-                        <span class="block text-3xl font-bold">80%</span>
-                        <span class="text-sm">يعتمدون على المساعدات</span>
-                    </div>
-                    <div class="bg-gray-100 p-4 rounded border-b-4 border-red-600">
-                        <span class="block text-3xl font-bold">صفر</span>
-                        <span class="text-sm">منفذ حر للعالم</span>
-                    </div>
-                </div>
-            </div>
-            <div class="relative group">
-                <div class="absolute -inset-2 bg-gradient-to-r from-green-600 to-red-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition"></div>
-                <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?q=80&w=2070" class="relative rounded-lg shadow-2xl">
-            </div>
-        </div>
-    </section>
+<!-- CONTENT (Chapters) -->
+<section id="content">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge" data-key="content.badge">محتوى الدروس</div>
+      <h2 class="section-title" data-key="content.title">الدروس <span class="gradient">التفصيلية</span></h2>
+      <p class="section-subtitle" data-key="content.sub">محتوى شامل مع أمثلة كود قابلة للتطبيق فوراً</p>
+    </div>
+    <div class="chapters-nav" id="chapters-nav"></div>
+    <div id="chapters-panels"></div>
+  </div>
+</section>
 
-    <!-- Section: The Political Farce (USA & Occupation) -->
-    <section id="farce" class="py-20 bg-black text-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-10 text-red-500 italic animate__animated animate__flash animate__infinite animate__slow">المهزلة الدولية</h2>
-                <div class="bg-zinc-900 p-10 rounded-3xl border border-zinc-800 shadow-2xl">
-                    <p class="text-2xl leading-relaxed mb-8">
-                        بينما تُلقى "خطابات حقوق الإنسان" في واشنطن، تُلقى **القنابل الذكية** الأمريكية الصنع على خيام النازحين في رفح وغزة. 
-                    </p>
-                    <div class="space-y-6 text-right inline-block">
-                        <div class="flex items-start gap-4">
-                            <span class="text-red-500 text-2xl font-bold">●</span>
-                            <p><span class="text-green-500 font-bold">الفيتو الأمريكي:</span> الحائط الذي يصد أي محاولة دولية لوقف نزيف الدم.</p>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <span class="text-red-500 text-2xl font-bold">●</span>
-                            <p><span class="text-green-500 font-bold">الجسر الجوي:</span> تدفق مستمر للأسلحة تحت غطاء "الدفاع عن النفس".</p>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <span class="text-red-500 text-2xl font-bold">●</span>
-                            <p><span class="text-green-500 font-bold">الصمت المخزي:</span> تواطؤ دولي يرى الجلاد ضحية، والضحية إرهابياً.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- RESOURCES -->
+<section id="resources">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">المصادر</div>
+      <h2 class="section-title">المصادر <span class="gradient">الرسمية</span></h2>
+      <p class="section-subtitle">أفضل المراجع لإتقان بايثون من مصادرها الأصلية</p>
+    </div>
+    <div class="resources-grid">
+      <div class="resource-card official fade-in">
+        <div class="resource-icon">🐍</div>
+        <h3>Python.org — الموقع الرسمي</h3>
+        <p>المصدر الرئيسي للغة بايثون: التوثيق، الأخبار، الإصدارات، ودليل البدء.</p>
+        <a href="https://www.python.org/" target="_blank" class="resource-link">زيارة python.org ↗</a>
+      </div>
+      <div class="resource-card official fade-in stagger-1">
+        <div class="resource-icon">📖</div>
+        <h3>توثيق Python 3</h3>
+        <p>التوثيق الكامل والرسمي للغة بايثون 3: البنية، المكتبات القياسية، والأمثلة.</p>
+        <a href="https://docs.python.org/3/" target="_blank" class="resource-link">زيارة التوثيق ↗</a>
+      </div>
+      <div class="resource-card fade-in stagger-2">
+        <div class="resource-icon">🖥️</div>
+        <h3>توثيق Tkinter الرسمي</h3>
+        <p>المرجع الرسمي لمكتبة tkinter: كل الـ widgets، المديرين، والخيارات.</p>
+        <a href="https://docs.python.org/3/library/tkinter.html" target="_blank" class="resource-link">زيارة التوثيق ↗</a>
+      </div>
+      <div class="resource-card fade-in stagger-3">
+        <div class="resource-icon">🎨</div>
+        <h3>توثيق ttk الرسمي</h3>
+        <p>المرجع الكامل لـ tkinter.ttk: الـ widgets، الـ Style، والـ themes.</p>
+        <a href="https://docs.python.org/3/library/tkinter.ttk.html" target="_blank" class="resource-link">زيارة التوثيق ↗</a>
+      </div>
+      <div class="resource-card fade-in stagger-1">
+        <div class="resource-icon">⬇️</div>
+        <h3>تحميل Python</h3>
+        <p>حمّل أحدث إصدار من بايثون لنظامك: Windows، macOS، أو Linux.</p>
+        <a href="https://www.python.org/downloads/" target="_blank" class="resource-link">تحميل Python ↗</a>
+      </div>
+      <div class="resource-card fade-in stagger-2">
+        <div class="resource-icon">🔬</div>
+        <h3>Python Tutorial الرسمي</h3>
+        <p>الشرح التفصيلي الرسمي لبايثون من لجنة Python Software Foundation.</p>
+        <a href="https://docs.python.org/3/tutorial/" target="_blank" class="resource-link">بدء التعلم ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Section: Children (The Silent Witness) -->
-    <section id="children" class="py-20 container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-16">أطفال غزة: كبارٌ قبل الأوان</h2>
-        <div class="grid md:grid-cols-3 gap-10">
-            <div class="group relative overflow-hidden rounded-2xl">
-                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent p-6 flex flex-col justify-end text-white">
-                    <h3 class="text-xl font-bold">طفولة خلف الجدار</h3>
-                    <p class="text-sm opacity-80">نشأوا ولم يعرفوا معنى الطائرة إلا كأداة للموت.</p>
-                </div>
-            </div>
-            <!-- المزيد من الصور الافتراضية المعبرة -->
-            <div class="group relative overflow-hidden rounded-2xl">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent p-6 flex flex-col justify-end text-white">
-                    <h3 class="text-xl font-bold">الجوع كسلاح</h3>
-                    <p class="text-sm opacity-80">يواجه صغارنا سوء التغذية الحاد نتيجة إغلاق المعابر.</p>
-                </div>
-            </div>
-            <div class="group relative overflow-hidden rounded-2xl">
-                <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-500">
-                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent p-6 flex flex-col justify-end text-white">
-                    <h3 class="text-xl font-bold">البحث عن أمان معدوم</h3>
-                    <p class="text-sm opacity-80">كل مدرسة هي ملجأ، وكل ملجأ هو هدف محتمل.</p>
-                </div>
-            </div>
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">الاختبار</div>
+      <h2 class="section-title">اختبر <span class="gradient">معلوماتك</span></h2>
+      <p class="section-subtitle">15 سؤالاً شاملاً من أساسيات بايثون حتى ttk.Style</p>
+    </div>
+    <div class="quiz-start" id="quiz-start">
+      <p data-key="quiz.intro">الاختبار يشمل أساسيات بايثون، الدوال، OOP، Tkinter، ttk و ttk.Style. سيتم تقييمك في النهاية.</p>
+      <button class="btn-primary" onclick="startQuiz()" data-key="quiz.start">ابدأ الاختبار الآن ←</button>
+    </div>
+    <div class="quiz-container" id="quiz-container">
+      <div class="quiz-progress-wrap">
+        <div class="quiz-meta">
+          <span id="quiz-q-num">السؤال 1 من 15</span>
+          <span id="quiz-score-live">النتيجة: 0</span>
         </div>
-    </section>
+        <div class="quiz-bar"><div class="quiz-bar-fill" id="quiz-bar-fill" style="width:0%"></div></div>
+      </div>
+      <div class="quiz-q" id="quiz-q-box"></div>
+      <div class="quiz-nav">
+        <button class="btn-outline" id="quiz-next-btn" onclick="nextQuestion()" style="display:none" data-key="quiz.next">التالي →</button>
+      </div>
+    </div>
+    <div class="quiz-result" id="quiz-result">
+      <div class="quiz-score-circle">
+        <div class="quiz-score-num" id="result-score">0</div>
+        <div class="quiz-score-total" id="result-total">/15</div>
+      </div>
+      <h3 class="quiz-grade" id="quiz-grade"></h3>
+      <p class="quiz-grade-desc" id="quiz-grade-desc"></p>
+      <div class="quiz-details" id="quiz-details"></div>
+      <button class="btn-primary" onclick="restartQuiz()" data-key="quiz.retry">أعد الاختبار</button>
+    </div>
+  </div>
+</section>
 
-    <!-- Donation Section -->
-    <section id="donate" class="bg-zinc-100 py-20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black mb-6">لا تكتفِ بالمشاهدة.. كُن عوناً</h2>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://www.map.org.uk/donate" class="bg-black text-white px-10 py-4 rounded-full font-bold hover:bg-zinc-800 transition shadow-xl">دعم طبي عاجل</a>
-                <a href="https://donate.unrwa.org/" class="bg-pal-green text-white px-10 py-4 rounded-full font-bold hover:bg-green-700 transition shadow-xl">إغاثة اللاجئين</a>
-            </div>
-            <p class="mt-8 text-gray-500">الحقيقة لا تموت، لكن البشر يموتون من الجوع. ساهم الآن.</p>
+<!-- COMMENTS -->
+<section id="comments">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">التعليقات</div>
+      <h2 class="section-title">شاركنا <span class="gradient">رأيك</span></h2>
+      <p class="section-subtitle">تعليقاتك تُحفظ محلياً وتُصدَّر كملف comments.txt</p>
+    </div>
+    <div class="comments-layout">
+      <div class="comment-form">
+        <h3 data-key="comment.add">إضافة تعليق جديد</h3>
+        <div class="form-group">
+          <label data-key="comment.name">اسمك</label>
+          <input class="form-input" id="c-name" placeholder="أدخل اسمك" type="text"/>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white py-12 text-center">
-        <div class="flex justify-center gap-2 mb-4">
-            <div class="w-4 h-4 bg-white"></div>
-            <div class="w-4 h-4 bg-green-600"></div>
-            <div class="w-4 h-4 bg-red-600"></div>
+        <div class="form-group">
+          <label data-key="comment.lesson">الدرس</label>
+          <select class="form-input" id="c-lesson">
+            <option value="basics">أساسيات بايثون</option>
+            <option value="functions">الدوال</option>
+            <option value="oop">البرمجة الكائنية</option>
+            <option value="libraries">المكتبات</option>
+            <option value="tkinter">Tkinter</option>
+            <option value="ttk">TTK &amp; TTK.Style</option>
+            <option value="advanced">المواضيع المتقدمة</option>
+          </select>
         </div>
-        <p class="text-sm opacity-50 italic">لن ننسى، ولن نغفر للمجتمع الدولي صمته.</p>
-    </footer>
+        <div class="form-group">
+          <label data-key="comment.text">تعليقك</label>
+          <textarea class="form-textarea" id="c-body" placeholder="اكتب تعليقك هنا..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn-primary" onclick="addComment()" data-key="comment.submit">إرسال التعليق</button>
+          <button class="download-btn" onclick="downloadComments()">⬇ تحميل comments.txt</button>
+        </div>
+      </div>
 
+      <div class="comments-list-wrap">
+        <h3>
+          <span data-key="comment.all">جميع التعليقات</span>
+          <select id="lesson-filter" onchange="renderComments()">
+            <option value="">الكل</option>
+            <option value="basics">أساسيات</option>
+            <option value="functions">الدوال</option>
+            <option value="oop">OOP</option>
+            <option value="libraries">مكتبات</option>
+            <option value="tkinter">Tkinter</option>
+            <option value="ttk">TTK</option>
+            <option value="advanced">متقدم</option>
+          </select>
+        </h3>
+        <div class="comment-list" id="comment-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>
+        <svg width="28" height="28" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" fill="#1e3a8a"/><path d="M35 28C35 20 42 16 50 16C58 16 65 20 65 28L65 42C65 46 62 48 58 48L50 48C45 48 42 50 42 54L42 58" stroke="#3b82f6" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M58 52L58 72C58 80 52 84 44 84C36 84 34 80 34 72L34 58C34 54 37 52 42 52L50 52C55 52 58 50 58 46" stroke="#f59e0b" stroke-width="9" stroke-linecap="round" fill="none"/></svg>
+        <span data-key="footer.name">أكاديمية بايثون</span>
+      </h3>
+      <p data-key="footer.desc">منصة تعليمية عربية متخصصة في تعليم لغة بايثون من الصفر حتى الاحتراف — تشمل tkinter، ttk، ttk.Style، والبرمجة الكائنية.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="footer.links">روابط سريعة</h4>
+      <ul>
+        <li><a href="#stages">مراحل التعلم</a></li>
+        <li><a href="#content">الدروس</a></li>
+        <li><a href="#quiz">الاختبار</a></li>
+        <li><a href="#comments">التعليقات</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="footer.official">مصادر رسمية</h4>
+      <ul>
+        <li><a href="https://python.org" target="_blank">python.org</a></li>
+        <li><a href="https://docs.python.org/3/" target="_blank">Python Docs</a></li>
+        <li><a href="https://docs.python.org/3/library/tkinter.ttk.html" target="_blank">ttk Docs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> <span data-key="footer.name">أكاديمية بايثون</span>. <span data-key="footer.rights">جميع الحقوق محفوظة</span>.</span>
+    <span><span class="online-dot"></span><span data-key="footer.status">جميع الأنظمة تعمل</span></span>
+  </div>
+</footer>
+
+<!-- Prism syntax highlighter -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   TRANSLATIONS
+═══════════════════════════════════════════════════ */
+const T = {
+  ar: {
+    "nav.home":"الرئيسية","nav.stages":"مراحل التعلم","nav.content":"الدروس",
+    "nav.resources":"المصادر","nav.quiz":"الاختبار","nav.comments":"التعليقات","nav.start":"ابدأ التعلم",
+    "logo":"أكاديمية بايثون",
+    "hero.badge":"منصة تعليمية عربية متخصصة",
+    "hero.t1":"أكاديمية","hero.t2":"بايثون",
+    "hero.subtitle":"المنصة العربية الشاملة لتعلم لغة بايثون. من الأساسيات إلى بناء تطبيقات سطح المكتب مع Tkinter و ttk.Style. تعلم، طبق، واحترف.",
+    "hero.cta":"ابدأ التعلم الآن ←","hero.res":"المصادر الرسمية",
+    "stat.chapters":"مراحل تعليمية","stat.widgets":"TTK Widgets","stat.quiz":"أسئلة اختبار","stat.lang":"لغات المحتوى",
+    "stages.badge":"مراحل التعلم","stages.title":"خطة تعلمك","stages.sub":"اتبع المراحل بالترتيب لبناء معرفة متراكمة وصحيحة",
+    "stages.progress":"تقدمك الإجمالي",
+    "content.badge":"محتوى الدروس","content.title":"الدروس التفصيلية","content.sub":"محتوى شامل مع أمثلة كود قابلة للتطبيق فوراً",
+    "quiz.intro":"الاختبار يشمل أساسيات بايثون، الدوال، OOP، Tkinter، ttk و ttk.Style. سيتم تقييمك في النهاية.",
+    "quiz.start":"ابدأ الاختبار الآن ←","quiz.next":"التالي →","quiz.retry":"أعد الاختبار",
+    "comment.add":"إضافة تعليق جديد","comment.name":"اسمك","comment.lesson":"الدرس",
+    "comment.text":"تعليقك","comment.submit":"إرسال التعليق","comment.all":"جميع التعليقات",
+    "footer.name":"أكاديمية بايثون","footer.desc":"منصة تعليمية عربية متخصصة في تعليم لغة بايثون من الصفر حتى الاحتراف.",
+    "footer.links":"روابط سريعة","footer.official":"مصادر رسمية","footer.rights":"جميع الحقوق محفوظة","footer.status":"جميع الأنظمة تعمل",
+  },
+  en: {
+    "nav.home":"Home","nav.stages":"Learning Stages","nav.content":"Lessons",
+    "nav.resources":"Resources","nav.quiz":"Quiz","nav.comments":"Comments","nav.start":"Start Learning",
+    "logo":"Python Academy",
+    "hero.badge":"Specialized Arabic Learning Platform",
+    "hero.t1":"Python","hero.t2":"Academy",
+    "hero.subtitle":"The comprehensive platform to learn Python. From the basics to desktop apps with Tkinter and ttk.Style. Learn, apply, and master.",
+    "hero.cta":"Start Learning Now →","hero.res":"Official Resources",
+    "stat.chapters":"Learning Stages","stat.widgets":"TTK Widgets","stat.quiz":"Quiz Questions","stat.lang":"Content Languages",
+    "stages.badge":"Learning Stages","stages.title":"Your Learning Plan","stages.sub":"Follow the stages in order to build solid, accumulated knowledge",
+    "stages.progress":"Your Overall Progress",
+    "content.badge":"Lesson Content","content.title":"Detailed Lessons","content.sub":"Comprehensive content with immediately applicable code examples",
+    "quiz.intro":"The quiz covers Python basics, functions, OOP, Tkinter, ttk and ttk.Style. You will be evaluated at the end.",
+    "quiz.start":"Start the Quiz Now →","quiz.next":"Next →","quiz.retry":"Retry Quiz",
+    "comment.add":"Add a New Comment","comment.name":"Your Name","comment.lesson":"Lesson",
+    "comment.text":"Your Comment","comment.submit":"Post Comment","comment.all":"All Comments",
+    "footer.name":"Python Academy","footer.desc":"An Arabic learning platform specializing in Python from scratch to mastery.",
+    "footer.links":"Quick Links","footer.official":"Official Resources","footer.rights":"All rights reserved","footer.status":"All systems operational",
+  }
+};
+let currentLang = localStorage.getItem('lang') || 'ar';
+function applyLang() {
+  const isAr = currentLang === 'ar';
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.getAttribute('data-key');
+    if (T[currentLang][k]) el.textContent = T[currentLang][k];
+  });
+  document.getElementById('lang-btn').textContent = isAr ? 'EN' : 'عر';
+  document.getElementById('logo-text').textContent = T[currentLang]['logo'];
+  buildStages(); buildChapters(); renderComments();
+}
+function toggleLang() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  localStorage.setItem('lang', currentLang);
+  applyLang();
+}
+
+/* ═══════════════════════════════════════════════════
+   THEME
+═══════════════════════════════════════════════════ */
+let isDark = localStorage.getItem('theme') !== 'light';
+function applyTheme() {
+  document.body.classList.toggle('light', !isDark);
+  document.getElementById('theme-btn').textContent = isDark ? '🌙' : '☀️';
+}
+function toggleTheme() { isDark = !isDark; localStorage.setItem('theme', isDark?'dark':'light'); applyTheme(); }
+applyTheme();
+
+/* ═══════════════════════════════════════════════════
+   HERO CODE ANIMATION
+═══════════════════════════════════════════════════ */
+const heroLines = [
+  {t:'def welcome_to_academy():',c:'c-blue'},
+  {t:'    msg = "أهلاً بك في أكاديمية بايثون!"',c:'c-green'},
+  {t:'    info = {',c:'c-blue'},
+  {t:"        'level': 'Beginner → Advanced',",c:'c-yellow'},
+  {t:"        'topics': ['tkinter','ttk','OOP'],",c:'c-yellow'},
+  {t:"        'status': 'Ready to Learn 🎓',",c:'c-yellow'},
+  {t:'    }',c:'c-blue'},
+  {t:'    return msg, info',c:'c-blue'},
+  {t:'',c:''},
+  {t:'welcome_to_academy()',c:'c-purple'},
+];
+let heroIdx = 0;
+function renderHeroLine() {
+  if (heroIdx >= heroLines.length) {
+    document.getElementById('hero-output').style.display = 'block';
+    return;
+  }
+  const container = document.getElementById('hero-code');
+  const l = heroLines[heroIdx++];
+  const div = document.createElement('div');
+  div.className = 'line';
+  div.innerHTML = `<span class="ln">${heroIdx}</span><span class="${l.c}">${l.t||'&nbsp;'}</span>`;
+  container.appendChild(div);
+  setTimeout(renderHeroLine, 280);
+}
+setTimeout(renderHeroLine, 600);
+
+/* ═══════════════════════════════════════════════════
+   STAGES DATA
+═══════════════════════════════════════════════════ */
+const stagesData = [
+  {
+    id:'basics',
+    icon:'🚀',
+    ar:{title:'المرحلة 1: أساسيات بايثون',desc:'المتغيرات، أنواع البيانات، الشروط، الحلقات — نقطة البداية لكل مبرمج',topics:['Variables','Data Types','if/elif/else','Loops','Lists','Dicts']},
+    en:{title:'Stage 1: Python Basics',desc:'Variables, data types, conditions, loops — the starting point for every programmer',topics:['Variables','Data Types','if/elif/else','Loops','Lists','Dicts']},
+  },
+  {
+    id:'functions',
+    icon:'⚙️',
+    ar:{title:'المرحلة 2: الدوال',desc:'تعريف الدوال، المعاملات، Lambda، الاستدعاء الذاتي، الديكوريتور',topics:['def','*args/**kwargs','Lambda','Recursion','Decorators']},
+    en:{title:'Stage 2: Functions',desc:'Defining functions, parameters, Lambda, recursion, decorators',topics:['def','*args/**kwargs','Lambda','Recursion','Decorators']},
+  },
+  {
+    id:'oop',
+    icon:'🏗️',
+    ar:{title:'المرحلة 3: البرمجة الكائنية',desc:'الفئات، الكائنات، الوراثة، تعدد الأشكال — أساس البرمجة الحديثة',topics:['class','__init__','Inheritance','Polymorphism','@property']},
+    en:{title:'Stage 3: OOP',desc:'Classes, objects, inheritance, polymorphism — the foundation of modern programming',topics:['class','__init__','Inheritance','Polymorphism','@property']},
+  },
+  {
+    id:'libraries',
+    icon:'📦',
+    ar:{title:'المرحلة 4: المكتبات القياسية',desc:'os، sys، datetime، json، re — القوة المدمجة في بايثون',topics:['os','sys','datetime','json','re','pathlib']},
+    en:{title:'Stage 4: Standard Libraries',desc:'os, sys, datetime, json, re — Python\'s built-in power',topics:['os','sys','datetime','json','re','pathlib']},
+  },
+  {
+    id:'tkinter',
+    icon:'🖥️',
+    ar:{title:'المرحلة 5: Tkinter + TTK + TTK.Style',desc:'بناء تطبيقات سطح المكتب الاحترافية مع كل الـ widgets والتخصيص الكامل',topics:['tk.Tk','ttk','ttk.Style','pack/grid/place','Notebook','Treeview']},
+    en:{title:'Stage 5: Tkinter + TTK + TTK.Style',desc:'Build professional desktop apps with all widgets and full customization',topics:['tk.Tk','ttk','ttk.Style','pack/grid/place','Notebook','Treeview']},
+  },
+  {
+    id:'advanced',
+    icon:'🔬',
+    ar:{title:'المرحلة 6: مواضيع متقدمة',desc:'المولدات، async/await، إدارة السياق، الميتا-كلاسات',topics:['Generators','async/await','Context Managers','Metaclasses','Type Hints']},
+    en:{title:'Stage 6: Advanced Topics',desc:'Generators, async/await, context managers, metaclasses',topics:['Generators','async/await','Context Managers','Metaclasses','Type Hints']},
+  },
+];
+let completedStages = JSON.parse(localStorage.getItem('stages') || '[]');
+
+function buildStages() {
+  const grid = document.getElementById('stages-grid');
+  grid.innerHTML = '';
+  const d = currentLang === 'ar';
+  stagesData.forEach((s,i) => {
+    const done = completedStages.includes(s.id);
+    const data = d ? s.ar : s.en;
+    const topics = data.topics.map(t=>`<span class="stage-topic">${t}</span>`).join('');
+    const pct = done ? 100 : 0;
+    grid.innerHTML += `
+      <div class="stage-card ${done?'completed':''}" id="stage-${s.id}">
+        <div class="stage-num">${s.icon}</div>
+        <div class="stage-info">
+          <div class="stage-title">
+            ${data.title}
+            ${done?'<span style="color:var(--green);font-size:.8rem">✓ '+(d?'مكتمل':'Done')+'</span>':''}
+          </div>
+          <div class="stage-desc">${data.desc}</div>
+          <div class="stage-topics">${topics}</div>
+          <div class="stage-progress">
+            <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+            <button onclick="toggleStage('${s.id}')" style="padding:4px 12px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--fg2);cursor:pointer;font-family:var(--font);font-size:.78rem;white-space:nowrap">
+              ${done ? (d?'إلغاء الإكمال':'Undo') : (d?'وضّع كمكتمل':'Mark Done')}
+            </button>
+          </div>
+        </div>
+      </div>`;
+  });
+  updateProgress();
+}
+function toggleStage(id) {
+  const idx = completedStages.indexOf(id);
+  if (idx >= 0) completedStages.splice(idx,1);
+  else completedStages.push(id);
+  localStorage.setItem('stages', JSON.stringify(completedStages));
+  buildStages();
+}
+function updateProgress() {
+  const pct = Math.round(completedStages.length / stagesData.length * 100);
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('overall-fill').style.width = pct + '%';
+}
+
+/* ═══════════════════════════════════════════════════
+   CHAPTERS CONTENT
+═══════════════════════════════════════════════════ */
+const chapters = [
+  {
+    id:'basics', icon:'🚀',
+    ar:{title:'أساسيات بايثون', intro:'بايثون لغة برمجة عالية المستوى، قابلة للقراءة بسهولة، تُستخدم في تطوير الويب، الذكاء الاصطناعي، وبناء التطبيقات.'},
+    en:{title:'Python Basics', intro:'Python is a high-level, easy-to-read programming language used in web development, AI, and application building.'},
+    content: `<div class="lesson-block">
+<h3><span class="lnum">1</span> المتغيرات وأنواع البيانات / Variables &amp; Data Types</h3>
+<p>المتغير هو اسم يشير إلى قيمة في الذاكرة. بايثون يحدد النوع تلقائياً (Dynamic Typing).</p>
+<div class="code-wrap"><pre><code class="language-python">
+# المتغيرات الأساسية
+name = "أحمد"          # str (نص)
+age = 25               # int (عدد صحيح)
+height = 1.75          # float (عدد عشري)
+is_student = True      # bool (منطقي)
+
+# عرض الأنواع
+print(type(name))      # <class 'str'>
+print(type(age))       # <class 'int'>
+print(type(height))    # <class 'float'>
+
+# أنواع مجمعة
+fruits = ["تفاح", "موز", "برتقال"]   # list (قابل للتعديل)
+coords = (10.5, 20.3)                 # tuple (غير قابل للتعديل)
+person = {"name": "أحمد", "age": 25} # dict (قاموس)
+unique = {1, 2, 3, 3}                 # set (مجموعة - بدون تكرار)
+
+print(fruits[0])       # تفاح
+print(person["name"])  # أحمد
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+<div class="lesson-block">
+<h3><span class="lnum">2</span> الجمل الشرطية / Conditionals</h3>
+<div class="code-wrap"><pre><code class="language-python">
+score = 85
+
+if score >= 90:
+    grade = "امتياز"
+elif score >= 75:
+    grade = "جيد جداً"
+elif score >= 60:
+    grade = "جيد"
+elif score >= 50:
+    grade = "مقبول"
+else:
+    grade = "راسب"
+
+print(f"درجتك: {grade}")  # درجتك: جيد جداً
+
+# الشرط الثلاثي (Ternary)
+status = "ناجح" if score >= 50 else "راسب"
+print(status)  # ناجح
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+<div class="lesson-block">
+<h3><span class="lnum">3</span> الحلقات / Loops</h3>
+<div class="code-wrap"><pre><code class="language-python">
+# حلقة for مع range
+for i in range(1, 6):
+    print(f"رقم {i}")
+
+# حلقة for على قائمة
+languages = ["Python", "JavaScript", "Rust"]
+for lang in languages:
+    print(f"لغة: {lang}")
+
+# حلقة while
+count = 0
+while count < 3:
+    print(f"عداد: {count}")
+    count += 1
+
+# enumerate — للحصول على الفهرس والقيمة معاً
+for idx, fruit in enumerate(["تفاح","موز","كيوي"], start=1):
+    print(f"{idx}. {fruit}")
+
+# list comprehension — قائمة من دالة
+squares = [x**2 for x in range(10)]
+evens   = [x for x in range(20) if x % 2 == 0]
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>`
+  },
+  {
+    id:'functions', icon:'⚙️',
+    ar:{title:'الدوال', intro:'الدوال تُنظّم الكود في وحدات قابلة لإعادة الاستخدام. بايثون يدعم أنواعاً متعددة من الدوال والمعاملات.'},
+    en:{title:'Functions', intro:'Functions organize code into reusable units. Python supports multiple types of functions and parameters.'},
+    content: `<div class="lesson-block">
+<h3><span class="lnum">1</span> تعريف الدوال / Defining Functions</h3>
+<div class="code-wrap"><pre><code class="language-python">
+# دالة أساسية
+def greet(name, greeting="مرحباً"):
+    """تحية المستخدم - هذا docstring"""
+    return f"{greeting}، {name}!"
+
+print(greet("أحمد"))            # مرحباً، أحمد!
+print(greet("سارة", "أهلاً"))  # أهلاً، سارة!
+
+# *args — عدد غير محدد من المعاملات
+def total(*numbers):
+    return sum(numbers)
+
+print(total(1, 2, 3, 4, 5))  # 15
+
+# **kwargs — معاملات مسماة غير محدودة
+def profile(**data):
+    for key, val in data.items():
+        print(f"{key}: {val}")
+
+profile(name="أحمد", age=25, city="الرياض")
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+<div class="lesson-block">
+<h3><span class="lnum">2</span> Lambda والديكوريتور / Lambda &amp; Decorators</h3>
+<div class="code-wrap"><pre><code class="language-python">
+# Lambda: دالة مجهولة الاسم في سطر واحد
+square = lambda x: x ** 2
+multiply = lambda x, y: x * y
+
+print(square(5))        # 25
+print(multiply(3, 4))   # 12
+
+# استخدام lambda مع sorted
+students = [{"name":"زيد","gpa":3.8},{"name":"منى","gpa":3.5}]
+sorted_students = sorted(students, key=lambda s: s["gpa"], reverse=True)
+
+# Decorators — دوال تُعدّل دوالاً أخرى
+import time
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        elapsed = time.time() - start
+        print(f"⏱️ {func.__name__} استغرق {elapsed:.4f} ثانية")
+        return result
+    return wrapper
+
+@timer
+def slow_operation():
+    time.sleep(0.1)
+    return "تمت العملية"
+
+slow_operation()  # ⏱️ slow_operation استغرق 0.1002 ثانية
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>`
+  },
+  {
+    id:'oop', icon:'🏗️',
+    ar:{title:'البرمجة الكائنية', intro:'OOP نهج برمجي يُنظّم الكود في فئات وكائنات تحاكي العالم الحقيقي.'},
+    en:{title:'Object-Oriented Programming', intro:'OOP organizes code into classes and objects that mirror the real world.'},
+    content: `<div class="lesson-block">
+<h3><span class="lnum">1</span> الفئات والكائنات / Classes &amp; Objects</h3>
+<div class="code-wrap"><pre><code class="language-python">
+class Animal:
+    # متغير الفئة (Class variable) — مشترك بين كل الكائنات
+    kingdom = "Animalia"
+
+    def __init__(self, name, sound):
+        # متغيرات المثيل (Instance variables)
+        self.name = name
+        self.sound = sound
+        self._energy = 100  # _ تعني "شبه خاص" بالاتفاق
+
+    def speak(self):
+        return f"{self.name} يقول: {self.sound}!"
+
+    @property
+    def energy(self):
+        return self._energy
+
+    @energy.setter
+    def energy(self, value):
+        self._energy = max(0, min(100, value))
+
+    def __repr__(self):
+        return f"Animal(name={self.name!r})"
+
+# الوراثة (Inheritance)
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name, "هاو هاو")
+        self.breed = breed
+
+    def fetch(self):
+        self._energy -= 10
+        return f"{self.name} جلب الكرة! طاقة: {self._energy}%"
+
+    def speak(self):  # تجاوز الدالة (Override)
+        return f"{self.name} ينبح بشدة: {self.sound}!!"
+
+dog = Dog("ماكس", "لابرادور")
+print(dog.speak())    # ماكس ينبح بشدة: هاو هاو!!
+print(dog.fetch())    # ماكس جلب الكرة! طاقة: 90%
+print(dog.kingdom)    # Animalia
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>`
+  },
+  {
+    id:'libraries', icon:'📦',
+    ar:{title:'المكتبات القياسية', intro:'بايثون يأتي مع مكتبات قياسية غنية تُغطي معظم احتياجات البرمجة اليومية.'},
+    en:{title:'Standard Libraries', intro:'Python comes with rich standard libraries covering most everyday programming needs.'},
+    content: `<div class="lesson-block">
+<h3><span class="lnum">1</span> مكتبة os و pathlib</h3>
+<div class="code-wrap"><pre><code class="language-python">
+import os
+from pathlib import Path
+
+# os — التعامل مع نظام الملفات
+cwd = os.getcwd()              # المسار الحالي
+files = os.listdir(".")        # محتويات المجلد
+os.makedirs("data/logs", exist_ok=True)  # إنشاء مجلدات
+
+# pathlib — الطريقة الحديثة (Python 3.4+)
+p = Path("data") / "config.json"
+print(p.suffix)    # .json
+print(p.stem)      # config
+print(p.parent)    # data
+
+if p.exists():
+    text = p.read_text(encoding="utf-8")
+    
+new_path = p.with_suffix(".txt")  # data/config.txt
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+<div class="lesson-block">
+<h3><span class="lnum">2</span> json و datetime و re</h3>
+<div class="code-wrap"><pre><code class="language-python">
+import json, datetime, re
+
+# JSON
+data = {"name": "أحمد", "scores": [95, 87, 92]}
+json_str = json.dumps(data, ensure_ascii=False, indent=2)
+restored = json.loads(json_str)
+
+# Datetime
+now = datetime.datetime.now()
+print(now.strftime("%Y-%m-%d %H:%M"))   # 2025-01-15 14:30
+delta = datetime.timedelta(days=7)
+next_week = now + delta
+
+# Regular Expressions
+email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+text = "تواصل معي على ahmed@example.com أو support@python.org"
+emails = re.findall(email_pattern, text)
+print(emails)  # ['ahmed@example.com', 'support@python.org']
+
+clean = re.sub(r"\s+", " ", "  نص   به   مسافات  ")
+print(clean)  # نص به مسافات
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>`
+  },
+  {
+    id:'tkinter', icon:'🖥️',
+    ar:{title:'Tkinter + TTK + TTK.Style', intro:'tkinter المكتبة المدمجة لبناء واجهات المستخدم الرسومية. ttk يُضيف widgets حديثة. ttk.Style يتيح تخصيصاً كاملاً للمظهر.'},
+    en:{title:'Tkinter + TTK + TTK.Style', intro:'tkinter is the built-in GUI library. ttk adds modern widgets. ttk.Style enables full appearance customization.'},
+    content: `<div class="lesson-block">
+<h3><span class="lnum">1</span> نافذة Tk الأساسية / Basic Tk Window</h3>
+<div class="code-wrap"><pre><code class="language-python">
+import tkinter as tk
+from tkinter import ttk, messagebox, filedialog
+
+root = tk.Tk()
+root.title("تطبيقي الأول")
+root.geometry("600x400")     # العرض × الارتفاع
+root.minsize(400, 300)       # الحد الأدنى للحجم
+root.configure(bg="#0d1117") # لون الخلفية (tk القديم)
+root.resizable(True, True)   # السماح بتغيير الحجم
+
+# وضع النافذة في وسط الشاشة
+screen_w = root.winfo_screenwidth()
+screen_h = root.winfo_screenheight()
+x = (screen_w - 600) // 2
+y = (screen_h - 400) // 2
+root.geometry(f"600x400+{x}+{y}")
+
+root.mainloop()  # حلقة الأحداث — لا تضع كوداً بعدها
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+
+<div class="lesson-block">
+<h3><span class="lnum">2</span> الـ Widgets الأساسية / Core Widgets</h3>
+<div class="code-wrap"><pre><code class="language-python">
+# Label — عرض نص أو صورة
+lbl = tk.Label(root, text="مرحباً!", font=("Cairo", 14, "bold"), fg="white", bg="#0d1117")
+lbl.pack(pady=10)
+
+# Button — زر قابل للضغط
+def on_click():
+    messagebox.showinfo("تنبيه", "تم الضغط على الزر!")
+
+btn = tk.Button(root, text="اضغط هنا", command=on_click,
+                bg="#3b82f6", fg="white", font=("Cairo", 11),
+                relief="flat", padx=20, pady=8, cursor="hand2")
+btn.pack(pady=5)
+
+# Entry — حقل إدخال نص
+var = tk.StringVar()
+entry = tk.Entry(root, textvariable=var, font=("Cairo", 11),
+                 width=30, relief="flat", bg="#1e2a3b", fg="white",
+                 insertbackground="white")
+entry.pack(pady=5)
+
+# Checkbutton
+check_var = tk.BooleanVar()
+chk = tk.Checkbutton(root, text="أوافق على الشروط", variable=check_var,
+                     fg="white", bg="#0d1117", selectcolor="#1e3a8a")
+chk.pack()
+
+# Combobox (ttk فقط)
+combo = ttk.Combobox(root, values=["بايثون", "جافا", "راست"], state="readonly")
+combo.set("بايثون")
+combo.pack(pady=5)
+
+# Listbox
+listbox = tk.Listbox(root, height=4, selectmode=tk.MULTIPLE,
+                     bg="#1e2a3b", fg="white", selectbackground="#3b82f6")
+for item in ["Python", "Tkinter", "TTK", "Style"]:
+    listbox.insert(tk.END, item)
+listbox.pack(pady=5)
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+
+<div class="lesson-block">
+<h3><span class="lnum">3</span> مديرو التخطيط / Layout Managers</h3>
+<table>
+<tr><th>المدير</th><th>الاستخدام</th><th>الخيارات الرئيسية</th></tr>
+<tr><td><code>pack()</code></td><td>ترتيب بسيط (فوق/تحت/يمين/يسار)</td><td>side, fill, expand, padx, pady</td></tr>
+<tr><td><code>grid()</code></td><td>شبكة صفوف وأعمدة — الأقوى</td><td>row, column, rowspan, columnspan, sticky</td></tr>
+<tr><td><code>place()</code></td><td>موضع دقيق بالبيكسل</td><td>x, y, relx, rely, anchor</td></tr>
+</table>
+<div class="code-wrap"><pre><code class="language-python">
+# مثال grid — نموذج تسجيل
+frame = tk.Frame(root, bg="#0d1117")
+frame.pack(fill="both", expand=True, padx=20, pady=20)
+
+tk.Label(frame, text="الاسم:", bg="#0d1117", fg="white").grid(row=0, column=0, sticky="e", padx=5, pady=5)
+tk.Entry(frame, width=25).grid(row=0, column=1, sticky="ew", padx=5, pady=5)
+
+tk.Label(frame, text="البريد:", bg="#0d1117", fg="white").grid(row=1, column=0, sticky="e", padx=5, pady=5)
+tk.Entry(frame, width=25).grid(row=1, column=1, sticky="ew", padx=5, pady=5)
+
+tk.Button(frame, text="إرسال", bg="#3b82f6", fg="white").grid(row=2, column=0, columnspan=2, pady=10)
+
+frame.columnconfigure(1, weight=1)  # العمود الثاني يتمدد
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+
+<div class="lesson-block">
+<h3><span class="lnum">4</span> مقدمة TTK — الـ Widgets الحديثة</h3>
+<p>ttk (Themed Tk) يُقدّم widgets محسّنة مع دعم themes ويبدو أكثر حداثة من الـ widgets الكلاسيكية.</p>
+<div class="note">⚡ الاستيراد الصحيح: <code>from tkinter import ttk</code> — ثم استخدم <code>ttk.Button</code> بدلاً من <code>tk.Button</code></div>
+<div class="ttk-widget-grid">
+  <div class="ttk-widget-card"><strong>ttk.Button</strong><span>زر محسّن</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Label</strong><span>نص محسّن</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Entry</strong><span>إدخال نص</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Combobox</strong><span>قائمة منسدلة</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Checkbutton</strong><span>خانة اختيار</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Radiobutton</strong><span>اختيار واحد</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Scale</strong><span>شريط تمرير</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Progressbar</strong><span>شريط تقدم</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Notebook</strong><span>علامات تبويب</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Treeview</strong><span>جدول / شجرة</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Frame</strong><span>إطار محسّن</span></div>
+  <div class="ttk-widget-card"><strong>ttk.LabelFrame</strong><span>إطار بعنوان</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Separator</strong><span>خط فاصل</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Scrollbar</strong><span>شريط التمرير</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Spinbox</strong><span>حقل رقمي</span></div>
+  <div class="ttk-widget-card"><strong>ttk.Sizegrip</strong><span>ركن تغيير الحجم</span></div>
+  <div class="ttk-widget-card"><strong>ttk.PanedWindow</strong><span>لوحات قابلة للتقسيم</span></div>
+</div>
+<div class="code-wrap"><pre><code class="language-python">
+# مثال شامل لـ ttk widgets
+import tkinter as tk
+from tkinter import ttk
+
+root = tk.Tk()
+root.title("TTK Widgets Demo")
+root.geometry("500x600")
+
+# ttk.Frame — الإطار الرئيسي
+main = ttk.Frame(root, padding=20)
+main.pack(fill="both", expand=True)
+
+# ttk.Label
+ttk.Label(main, text="أسمك:", font=("Cairo", 11)).grid(row=0, column=0, sticky="e", pady=5)
+
+# ttk.Entry
+name_var = tk.StringVar()
+ttk.Entry(main, textvariable=name_var, width=25).grid(row=0, column=1, sticky="ew", pady=5)
+
+# ttk.Combobox
+ttk.Label(main, text="المستوى:").grid(row=1, column=0, sticky="e", pady=5)
+combo = ttk.Combobox(main, values=["مبتدئ", "متوسط", "متقدم"], state="readonly", width=22)
+combo.set("مبتدئ")
+combo.grid(row=1, column=1, sticky="ew", pady=5)
+
+# ttk.Progressbar
+ttk.Label(main, text="التقدم:").grid(row=2, column=0, sticky="e", pady=5)
+progress = ttk.Progressbar(main, length=200, mode="determinate", value=65)
+progress.grid(row=2, column=1, sticky="ew", pady=5)
+
+# ttk.Notebook — تبويبات
+notebook = ttk.Notebook(main)
+notebook.grid(row=3, column=0, columnspan=2, sticky="nsew", pady=10)
+
+tab1 = ttk.Frame(notebook, padding=10)
+tab2 = ttk.Frame(notebook, padding=10)
+notebook.add(tab1, text=" ⭐ الدروس ")
+notebook.add(tab2, text=" 📊 التقدم ")
+
+ttk.Label(tab1, text="مرحباً في تبويب الدروس!").pack()
+ttk.Label(tab2, text="مرحباً في تبويب التقدم!").pack()
+
+# ttk.Treeview — جدول
+columns = ("الاسم", "الدرجة", "التقييم")
+tree = ttk.Treeview(main, columns=columns, show="headings", height=3)
+for col in columns:
+    tree.heading(col, text=col)
+    tree.column(col, width=100, anchor="center")
+tree.insert("", "end", values=("أحمد", "95", "⭐⭐⭐⭐⭐"))
+tree.insert("", "end", values=("منى", "88", "⭐⭐⭐⭐"))
+tree.insert("", "end", values=("زيد", "72", "⭐⭐⭐"))
+tree.grid(row=4, column=0, columnspan=2, sticky="nsew", pady=5)
+
+# Scrollbar للـ Treeview
+vsb = ttk.Scrollbar(main, orient="vertical", command=tree.yview)
+tree.configure(yscrollcommand=vsb.set)
+vsb.grid(row=4, column=2, sticky="ns")
+
+# ttk.Button
+ttk.Button(main, text="إرسال").grid(row=5, column=0, columnspan=2, pady=10)
+
+main.columnconfigure(1, weight=1)
+root.mainloop()
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+
+<div class="lesson-block">
+<h3><span class="lnum">5</span> TTK.Style — تخصيص المظهر الكامل</h3>
+<div class="note">🎨 <strong>ttk.Style</strong> هو محرك تخصيص المظهر في ttk. يُتيح تعديل الألوان، الخطوط، الحشوة، والحالات المختلفة لكل widget.</div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">1. إنشاء كائن Style واستكشاف الثيمات</h4>
+<div class="code-wrap"><pre><code class="language-python">
+import tkinter as tk
+from tkinter import ttk
+
+root = tk.Tk()
+
+# إنشاء كائن Style — محور كل التخصيصات
+style = ttk.Style()
+
+# الثيمات المتاحة حسب نظام التشغيل:
+available_themes = style.theme_names()
+print(f"الثيمات المتاحة: {available_themes}")
+# Windows: ('winnative', 'clam', 'alt', 'default', 'classic', 'vista', 'xpnative')
+# macOS:   ('aqua', 'clam', 'alt', 'default', 'classic')
+# Linux:   ('clam', 'alt', 'default', 'classic')
+
+# الثيم الحالي
+current = style.theme_use()
+print(f"الثيم الحالي: {current}")
+
+# تطبيق ثيم مختلف — يُغيّر المظهر الافتراضي لكل الـ widgets
+style.theme_use('clam')  # 'clam' يُعطي مظهراً نظيفاً قابلاً للتخصيص
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<div class="theme-badges">
+  <span class="theme-badge highlight">clam</span>
+  <span class="theme-badge highlight">alt</span>
+  <span class="theme-badge">default</span>
+  <span class="theme-badge">classic</span>
+  <span class="theme-badge">vista (Win)</span>
+  <span class="theme-badge">aqua (Mac)</span>
+</div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">2. تخصيص widget موجود — style.configure()</h4>
+<div class="code-wrap"><pre><code class="language-python">
+style = ttk.Style()
+style.theme_use('clam')
+
+# تخصيص TButton — جميع أزرار ttk.Button
+style.configure('TButton',
+    background='#1e3a8a',      # لون الخلفية
+    foreground='white',         # لون النص
+    font=('Cairo', 11, 'bold'), # الخط
+    padding=(20, 10),           # الحشوة (أفقي، عمودي)
+    relief='flat',              # شكل الإطار: flat, raised, sunken, groove
+    borderwidth=0,              # سُمك الحد
+    focuscolor='',              # إخفاء مؤشر التركيز
+    cursor='hand2',             # شكل المؤشر عند التحويم
+)
+
+# تخصيص TLabel
+style.configure('TLabel',
+    background='#0d1117',
+    foreground='#e6edf3',
+    font=('Cairo', 11),
+    padding=(5, 3),
+)
+
+# تخصيص TEntry
+style.configure('TEntry',
+    fieldbackground='#1e2a3b',  # خلفية حقل الإدخال
+    foreground='white',
+    insertcolor='#3b82f6',      # لون مؤشر الكتابة
+    borderwidth=1,
+    relief='flat',
+    padding=(8, 6),
+)
+
+# تخصيص TFrame
+style.configure('TFrame', background='#0d1117')
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">3. تخصيص الحالات — style.map()</h4>
+<div class="note">⚡ <code>style.map()</code> تُحدد مظهراً مختلفاً لكل حالة: تحويم، ضغط، تعطيل، تركيز</div>
+<div class="code-wrap"><pre><code class="language-python">
+style.map('TButton',
+    background=[
+        ('active',   '#1d4ed8'),   # عند التحويم فوقه
+        ('pressed',  '#1e40af'),   # لحظة الضغط
+        ('disabled', '#374151'),   # عند التعطيل
+        ('focus',    '#1e3a8a'),   # عند التركيز (Tab)
+    ],
+    foreground=[
+        ('disabled', '#6b7280'),
+    ],
+    relief=[
+        ('pressed', 'sunken'),
+    ],
+)
+
+style.map('TEntry',
+    fieldbackground=[
+        ('focus',    '#1e3a8a'),  # خلفية عند التركيز
+        ('disabled', '#111827'),
+    ],
+    foreground=[
+        ('disabled', '#4b5563'),
+    ],
+)
+
+style.map('TCombobox',
+    fieldbackground=[('readonly', '#1e2a3b')],
+    selectbackground=[('readonly', '#1e3a8a')],
+    selectforeground=[('readonly', 'white')],
+)
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">4. أسماء الستايل المخصصة / Custom Style Names</h4>
+<div class="note yellow">📌 أسماء الـ styles المخصصة <strong>يجب</strong> أن تنتهي بـ <code>.TWidget</code> مثل: <code>Yellow.TButton</code>، <code>Danger.TButton</code></div>
+<div class="code-wrap"><pre><code class="language-python">
+# إنشاء أزرار بألوان مختلفة
+style.configure('Yellow.TButton',
+    background='#f59e0b', foreground='#0d1117',
+    font=('Cairo', 11, 'bold'), padding=(20, 10))
+style.map('Yellow.TButton',
+    background=[('active','#d97706'),('pressed','#b45309')])
+
+style.configure('Success.TButton',
+    background='#22c55e', foreground='white',
+    font=('Cairo', 11, 'bold'), padding=(20, 10))
+style.map('Success.TButton',
+    background=[('active','#16a34a'),('pressed','#15803d')])
+
+style.configure('Danger.TButton',
+    background='#ef4444', foreground='white',
+    font=('Cairo', 11, 'bold'), padding=(20, 10))
+style.map('Danger.TButton',
+    background=[('active','#dc2626'),('pressed','#b91c1c')])
+
+# استخدام الأسماء المخصصة
+btn_blue   = ttk.Button(root, text="أزرق (افتراضي)")
+btn_yellow = ttk.Button(root, text="أصفر", style='Yellow.TButton')
+btn_green  = ttk.Button(root, text="نجاح", style='Success.TButton')
+btn_red    = ttk.Button(root, text="خطر", style='Danger.TButton')
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">5. تخصيص Progressbar</h4>
+<div class="code-wrap"><pre><code class="language-python">
+# Progressbar بألوان مخصصة
+style.configure('Blue.Horizontal.TProgressbar',
+    background='#3b82f6',      # لون الشريط المملوء
+    troughcolor='#1e2a3b',     # لون الشريط الفارغ
+    thickness=20,              # السُمك
+    borderwidth=0,
+)
+style.configure('Yellow.Horizontal.TProgressbar',
+    background='#f59e0b',
+    troughcolor='#1c1408',
+    thickness=16,
+)
+
+pb = ttk.Progressbar(root, style='Blue.Horizontal.TProgressbar',
+                     length=300, mode='determinate', value=75)
+pb.pack(pady=10)
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">6. تخصيص Notebook (التبويبات)</h4>
+<div class="code-wrap"><pre><code class="language-python">
+style.configure('TNotebook',
+    background='#0d1117',
+    tabmargins=[2, 5, 2, 0],    # هوامش التبويبات
+)
+style.configure('TNotebook.Tab',
+    background='#1e293b',
+    foreground='#8b949e',
+    padding=(20, 8),
+    font=('Cairo', 10, 'bold'),
+)
+style.map('TNotebook.Tab',
+    background=[('selected', '#1e3a8a')],
+    foreground=[('selected', 'white')],
+    expand=[('selected', [1, 1, 1, 0])],  # تكبير التبويب المختار
+)
+
+notebook = ttk.Notebook(root)
+tab1 = ttk.Frame(notebook, style='TFrame')
+tab2 = ttk.Frame(notebook, style='TFrame')
+notebook.add(tab1, text=" 🏠 الرئيسية ")
+notebook.add(tab2, text=" ⚙️ الإعدادات ")
+notebook.pack(fill="both", expand=True, padx=10, pady=10)
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">7. تخصيص Treeview (الجداول)</h4>
+<div class="code-wrap"><pre><code class="language-python">
+style.configure('Treeview',
+    background='#0d1117',
+    foreground='#e6edf3',
+    fieldbackground='#0d1117',
+    font=('Cairo', 10),
+    rowheight=30,
+    borderwidth=0,
+)
+style.configure('Treeview.Heading',
+    background='#1e293b',
+    foreground='#60a5fa',
+    font=('Cairo', 10, 'bold'),
+    relief='flat',
+)
+style.map('Treeview',
+    background=[('selected', '#1e3a8a')],
+    foreground=[('selected', 'white')],
+)
+style.map('Treeview.Heading',
+    background=[('active', '#263354')],
+)
+
+# Treeview مع tag للصفوف الملونة
+tree = ttk.Treeview(root, columns=("النوع","الحجم"), show="headings")
+tree.tag_configure('odd',  background='#0f1923')
+tree.tag_configure('even', background='#0d1117')
+
+for i, (name, size) in enumerate([("ملف1.py","2KB"),("ملف2.py","5KB"),("ملف3.py","1KB")]):
+    tag = 'even' if i % 2 == 0 else 'odd'
+    tree.insert("", "end", values=(name, size), tags=(tag,))
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<h4 style="margin:20px 0 12px;color:var(--yellow)">8. تطبيق متكامل — Dark Theme App</h4>
+<div class="code-wrap"><pre><code class="language-python">
+import tkinter as tk
+from tkinter import ttk, messagebox
+
+class DarkApp:
+    BG    = "#0d1117"
+    BG2   = "#161b22"
+    BG3   = "#1e2a3b"
+    BLUE  = "#3b82f6"
+    BLUE2 = "#1d4ed8"
+    YELLOW= "#f59e0b"
+    FG    = "#e6edf3"
+    FG2   = "#8b949e"
+
+    def __init__(self, root):
+        self.root = root
+        root.title("أكاديمية بايثون — Dark App")
+        root.geometry("700x500")
+        root.configure(bg=self.BG)
+        self._apply_styles()
+        self._build_ui()
+
+    def _apply_styles(self):
+        s = ttk.Style()
+        s.theme_use('clam')
+        s.configure('.',              background=self.BG,   foreground=self.FG,  font=('Cairo',10))
+        s.configure('TFrame',         background=self.BG)
+        s.configure('TLabel',         background=self.BG,   foreground=self.FG)
+        s.configure('TEntry',         fieldbackground=self.BG3, foreground=self.FG, insertcolor=self.BLUE)
+        s.configure('TButton',        background=self.BLUE, foreground='white', padding=(16,8), font=('Cairo',10,'bold'))
+        s.map('TButton',              background=[('active',self.BLUE2),('pressed','#1e40af')])
+        s.configure('Yellow.TButton', background=self.YELLOW, foreground=self.BG, padding=(16,8), font=('Cairo',10,'bold'))
+        s.map('Yellow.TButton',       background=[('active','#d97706'),('pressed','#b45309')])
+        s.configure('TNotebook',      background=self.BG,  tabmargins=[0,5,0,0])
+        s.configure('TNotebook.Tab',  background=self.BG2, foreground=self.FG2, padding=(18,8))
+        s.map('TNotebook.Tab',        background=[('selected',self.BG3)], foreground=[('selected',self.FG)])
+        s.configure('Treeview',       background=self.BG2, foreground=self.FG, fieldbackground=self.BG2, rowheight=28)
+        s.configure('Treeview.Heading', background=self.BG3, foreground='#60a5fa', font=('Cairo',10,'bold'))
+        s.map('Treeview',             background=[('selected',self.BLUE)], foreground=[('selected','white')])
+        s.configure('Horizontal.TProgressbar', background=self.BLUE, troughcolor=self.BG3, thickness=12)
+
+    def _build_ui(self):
+        # الـ Notebook الرئيسي
+        nb = ttk.Notebook(self.root)
+        nb.pack(fill='both', expand=True, padx=15, pady=15)
+
+        # تبويب 1: الطلاب
+        t1 = ttk.Frame(nb, padding=20); nb.add(t1, text=' 👥 الطلاب ')
+        cols = ('الاسم','الدرس','الدرجة','التقدم')
+        tree = ttk.Treeview(t1, columns=cols, show='headings', height=6)
+        for c in cols: tree.heading(c,text=c); tree.column(c,width=130,anchor='center')
+        data = [("أحمد علي","Tkinter","95",""),(  "منى سالم","TTK Style","88",""),
+                ("زيد خالد","OOP","72",""),("ريم يوسف","Advanced","91","")]
+        for row in data: tree.insert("","end",values=row)
+        tree.pack(fill='both', expand=True)
+
+        # تبويب 2: الإعدادات
+        t2 = ttk.Frame(nb, padding=20); nb.add(t2, text=' ⚙️ الإعدادات ')
+        ttk.Label(t2, text="اسم المستخدم:").grid(row=0,column=0,sticky='e',pady=8,padx=5)
+        ttk.Entry(t2, width=25).grid(row=0,column=1,sticky='ew',pady=8)
+        ttk.Label(t2, text="الثيم:").grid(row=1,column=0,sticky='e',pady=8,padx=5)
+        ttk.Combobox(t2,values=['Dark','Light','Blue'],state='readonly',width=22).grid(row=1,column=1,sticky='ew',pady=8)
+        ttk.Label(t2, text="الحجم:").grid(row=2,column=0,sticky='e',pady=8,padx=5)
+        ttk.Scale(t2, from_=8, to=20, orient='horizontal').grid(row=2,column=1,sticky='ew',pady=8)
+        bar_frame = ttk.Frame(t2); bar_frame.grid(row=3,column=0,columnspan=2,sticky='ew',pady=10)
+        ttk.Label(bar_frame,text="التحميل:").pack(side='left',padx=(0,10))
+        pb = ttk.Progressbar(bar_frame, mode='determinate', value=70, length=200)
+        pb.pack(side='left')
+        f_btns = ttk.Frame(t2); f_btns.grid(row=4,column=0,columnspan=2,pady=10)
+        ttk.Button(f_btns, text="حفظ", command=lambda: messagebox.showinfo("✓","تم الحفظ!")).pack(side='left',padx=5)
+        ttk.Button(f_btns, text="إلغاء", style='Yellow.TButton').pack(side='left',padx=5)
+        t2.columnconfigure(1, weight=1)
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    app = DarkApp(root)
+    root.mainloop()
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+
+<div class="note green">✅ <strong>خلاصة ttk.Style:</strong> style.configure() لتعيين الافتراضيات — style.map() للحالات المختلفة — أسماء مخصصة تنتهي بـ .TWidget — theme_use() لتغيير الثيم الكامل</div>
+</div>`
+  },
+  {
+    id:'advanced', icon:'🔬',
+    ar:{title:'مواضيع متقدمة', intro:'الأدوات القوية التي تُميّز مبرمج بايثون المتقدم: المولدات، async، إدارة السياق.'},
+    en:{title:'Advanced Topics', intro:'The powerful tools that distinguish an advanced Python programmer: generators, async, context managers.'},
+    content: `<div class="lesson-block">
+<h3><span class="lnum">1</span> المولدات / Generators</h3>
+<div class="code-wrap"><pre><code class="language-python">
+# Generator function — تُعيد قيمة واحدة في كل مرة
+def fibonacci(n):
+    a, b = 0, 1
+    count = 0
+    while count < n:
+        yield a      # توقف هنا وأعد a
+        a, b = b, a + b
+        count += 1
+
+for num in fibonacci(10):
+    print(num, end=" ")  # 0 1 1 2 3 5 8 13 21 34
+
+# Generator Expression
+squares_gen = (x**2 for x in range(1000000))  # لا يحجز الذاكرة
+first_ten = list(squares_gen)[:10]             # [0,1,4,9,16,25,36,49,64,81]
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+<div class="lesson-block">
+<h3><span class="lnum">2</span> البرمجة غير المتزامنة / Async/Await</h3>
+<div class="code-wrap"><pre><code class="language-python">
+import asyncio
+import aiohttp  # pip install aiohttp
+
+# دالة غير متزامنة
+async def fetch_url(session, url):
+    async with session.get(url) as response:
+        return await response.json()
+
+# جلب عدة URLs بالتوازي
+async def fetch_all(urls):
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch_url(session, url) for url in urls]
+        results = await asyncio.gather(*tasks)
+        return results
+
+# تشغيل
+urls = ["https://api.example.com/1", "https://api.example.com/2"]
+data = asyncio.run(fetch_all(urls))
+
+# asyncio.sleep — انتظار غير حاجب
+async def countdown(n):
+    while n > 0:
+        print(f"⏱️ {n}...")
+        await asyncio.sleep(1)
+        n -= 1
+    print("🚀 انطلق!")
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>
+<div class="lesson-block">
+<h3><span class="lnum">3</span> إدارة السياق / Context Managers</h3>
+<div class="code-wrap"><pre><code class="language-python">
+from contextlib import contextmanager
+import time
+
+# بناء context manager بـ contextmanager
+@contextmanager
+def timer(label=""):
+    start = time.perf_counter()
+    try:
+        yield  # تشغيل كود with block
+    finally:
+        elapsed = time.perf_counter() - start
+        print(f"⏱️ {label}: {elapsed:.4f}s")
+
+with timer("حساب مكثف"):
+    result = sum(i**2 for i in range(1_000_000))
+
+# Context manager بكلاس
+class ManagedFile:
+    def __init__(self, path, mode="r"):
+        self.path = path
+        self.mode = mode
+
+    def __enter__(self):
+        self.file = open(self.path, self.mode, encoding="utf-8")
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.file.close()
+        return False  # لا تُخفِ الاستثناء
+
+with ManagedFile("data.txt", "w") as f:
+    f.write("مثال على إدارة الموارد")
+</code></pre><button class="copy-btn" onclick="copyCode(this)">نسخ</button></div>
+</div>`
+  }
+];
+
+function buildChapters() {
+  const nav = document.getElementById('chapters-nav');
+  const panels = document.getElementById('chapters-panels');
+  const isAr = currentLang === 'ar';
+  nav.innerHTML = ''; panels.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const d = isAr ? ch.ar : ch.en;
+    const cls = i === 0 ? 'active' : '';
+    nav.innerHTML += `<button class="chapter-tab ${cls}" onclick="showChapter('${ch.id}')" id="tab-${ch.id}">${ch.icon} ${d.title}</button>`;
+    panels.innerHTML += `<div class="chapter-panel ${cls}" id="panel-${ch.id}">
+      <div class="chapter-title"><span class="icon">${ch.icon}</span>${d.title}</div>
+      <p class="chapter-intro">${d.intro}</p>
+      ${ch.content}
+    </div>`;
+  });
+  Prism && Prism.highlightAll && setTimeout(() => Prism.highlightAll(), 100);
+}
+
+function showChapter(id) {
+  document.querySelectorAll('.chapter-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.chapter-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('panel-'+id).classList.add('active');
+  Prism && Prism.highlightAll && setTimeout(() => Prism.highlightAll(), 50);
+}
+
+function copyCode(btn) {
+  const code = btn.previousElementSibling.textContent;
+  navigator.clipboard.writeText(code.trim()).then(() => {
+    btn.textContent = '✓ تم النسخ'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'نسخ'; btn.classList.remove('copied'); }, 1800);
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   QUIZ
+═══════════════════════════════════════════════════ */
+const QUESTIONS = [
+  {q_ar:"ما هو ناتج هذا الكود؟",q_en:"What is the output of this code?",code:"print(type(3.14))",opts_ar:["<class 'float'>","<class 'int'>","<class 'decimal'>","<class 'number'>"],opts_en:["<class 'float'>","<class 'int'>","<class 'decimal'>","<class 'number'>"],ans:0},
+  {q_ar:"ما الكلمة المفتاحية لتعريف دالة في بايثون؟",q_en:"What keyword defines a function in Python?",opts_ar:["function","func","def","define"],opts_en:["function","func","def","define"],ans:2},
+  {q_ar:"ما الفرق الأساسي بين List و Tuple؟",q_en:"What is the main difference between List and Tuple?",opts_ar:["لا فرق","Tuple غير قابل للتعديل","List غير قابل للتعديل","Tuple أبطأ"],opts_en:["No difference","Tuple is immutable","List is immutable","Tuple is slower"],ans:1},
+  {q_ar:"ما هو الاستيراد الصحيح لـ ttk؟",q_en:"What is the correct import for ttk?",opts_ar:["import ttk","from tkinter import ttk","from ttk import tkinter","import tkinter.ttk as tk"],opts_en:["import ttk","from tkinter import ttk","from ttk import tkinter","import tkinter.ttk as tk"],ans:1},
+  {q_ar:"ما اسم الدالة التي تبدأ حلقة أحداث tkinter؟",q_en:"What function starts the tkinter event loop?",opts_ar:["root.start()","root.run()","root.mainloop()","root.loop()"],opts_en:["root.start()","root.run()","root.mainloop()","root.loop()"],ans:2},
+  {q_ar:"أي مدير تخطيط يرتب العناصر في شبكة صفوف وأعمدة؟",q_en:"Which layout manager arranges widgets in a row/column grid?",opts_ar:["pack()","place()","grid()","frame()"],opts_en:["pack()","place()","grid()","frame()"],ans:2},
+  {q_ar:"ما هو ناتج: [x**2 for x in range(4)]؟",q_en:"What is the output of: [x**2 for x in range(4)]?",opts_ar:["[0,1,4,9]","[1,4,9,16]","[0,2,4,6]","[1,2,3,4]"],opts_en:["[0,1,4,9]","[1,4,9,16]","[0,2,4,6]","[1,2,3,4]"],ans:0},
+  {q_ar:"ما الـ widget المستخدم لعرض علامات تبويب في ttk؟",q_en:"Which ttk widget displays tabs?",opts_ar:["ttk.Frame","ttk.Notebook","ttk.Tab","ttk.Tabview"],opts_en:["ttk.Frame","ttk.Notebook","ttk.Tab","ttk.Tabview"],ans:1},
+  {q_ar:"كيف تحصل على أسماء الثيمات في ttk.Style؟",q_en:"How do you get available themes in ttk.Style?",opts_ar:["style.list_themes()","style.get_themes()","style.theme_names()","style.themes"],opts_en:["style.list_themes()","style.get_themes()","style.theme_names()","style.themes"],ans:2},
+  {q_ar:"لتخصيص حالة التحويم فوق زر ttk، تستخدم:",q_en:"To customize the hover state of a ttk button, you use:",opts_ar:["style.configure('TButton', hover='...')","style.map('TButton', background=[('active','...')])","style.hover('TButton',...)","ttk.Button(hover='...')"],opts_en:["style.configure('TButton', hover='...')","style.map('TButton', background=[('active','...')])","style.hover('TButton',...)","ttk.Button(hover='...')"],ans:1},
+  {q_ar:"ما نمط التسمية الصحيح لستايل ttk مخصص؟",q_en:"What is the correct naming pattern for a custom ttk style?",opts_ar:["MyButton","MyButton.ttk","MyButton.TButton","TButton.MyButton"],opts_en:["MyButton","MyButton.ttk","MyButton.TButton","TButton.MyButton"],ans:2},
+  {q_ar:"الكلمة المفتاحية في OOP لاستدعاء __init__ من الفئة الأب هي:",q_en:"The keyword to call parent class __init__ in OOP is:",opts_ar:["parent()","base()","super()","ancestor()"],opts_en:["parent()","base()","super()","ancestor()"],ans:2},
+  {q_ar:"ما هو ناتج: 2 ** 10؟",q_en:"What is the output of: 2 ** 10?",opts_ar:["20","100","512","1024"],opts_en:["20","100","512","1024"],ans:3},
+  {q_ar:"الكلمة المفتاحية للمولدات في بايثون هي:",q_en:"The keyword for generators in Python is:",opts_ar:["return","generate","yield","produce"],opts_en:["return","generate","yield","produce"],ans:2},
+  {q_ar:"ما أفضل ثيم ttk للتخصيص الكامل للألوان؟",q_en:"Which ttk theme is best for full color customization?",opts_ar:["default","classic","vista","clam"],opts_en:["default","classic","vista","clam"],ans:3},
+];
+
+let qIdx = 0, score = 0, answered = false;
+
+function startQuiz() {
+  qIdx = 0; score = 0; answered = false;
+  document.getElementById('quiz-start').style.display = 'none';
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('quiz-container').style.display = 'block';
+  showQuestion();
+}
+function showQuestion() {
+  const isAr = currentLang === 'ar';
+  const q = QUESTIONS[qIdx];
+  answered = false;
+  const pct = (qIdx / QUESTIONS.length) * 100;
+  document.getElementById('quiz-bar-fill').style.width = pct + '%';
+  document.getElementById('quiz-q-num').textContent = isAr ? `السؤال ${qIdx+1} من ${QUESTIONS.length}` : `Question ${qIdx+1} of ${QUESTIONS.length}`;
+  document.getElementById('quiz-score-live').textContent = isAr ? `النتيجة: ${score}` : `Score: ${score}`;
+  document.getElementById('quiz-next-btn').style.display = 'none';
+
+  const opts = isAr ? q.opts_ar : q.opts_en;
+  const letters = ['A','B','C','D'];
+  const box = document.getElementById('quiz-q-box');
+  box.innerHTML = `
+    <div class="quiz-q-label">${isAr?'سؤال':'QUESTION'} ${qIdx+1}</div>
+    <h3>${isAr ? q.q_ar : q.q_en}</h3>
+    ${q.code ? `<div class="code-snippet">${q.code}</div>` : ''}
+    <div class="quiz-options">
+      ${opts.map((o,i)=>`<button class="quiz-opt" onclick="selectOption(${i},${q.ans})" id="opt-${i}">
+        <span class="opt-letter">${letters[i]}</span>${o}
+      </button>`).join('')}
+    </div>`;
+}
+function selectOption(selected, correct) {
+  if (answered) return;
+  answered = true;
+  const isAr = currentLang === 'ar';
+  if (selected === correct) score++;
+  QUESTIONS[qIdx].opts_ar.forEach((_,i) => {
+    const btn = document.getElementById('opt-'+i);
+    if (i === correct) btn.classList.add('correct');
+    else if (i === selected && selected !== correct) btn.classList.add('wrong');
+    btn.disabled = true;
+  });
+  document.getElementById('quiz-score-live').textContent = isAr ? `النتيجة: ${score}` : `Score: ${score}`;
+  document.getElementById('quiz-next-btn').style.display = 'inline-block';
+}
+function nextQuestion() {
+  qIdx++;
+  if (qIdx >= QUESTIONS.length) showResult();
+  else showQuestion();
+}
+function showResult() {
+  const isAr = currentLang === 'ar';
+  document.getElementById('quiz-container').style.display = 'none';
+  const res = document.getElementById('quiz-result');
+  res.style.display = 'block';
+  document.getElementById('result-score').textContent = score;
+  document.getElementById('result-total').textContent = `/${QUESTIONS.length}`;
+  const pct = score / QUESTIONS.length;
+  let grade, desc, color;
+  if (pct >= 0.9) {
+    grade = isAr ? '🏆 امتياز!' : '🏆 Excellent!';
+    desc = isAr ? 'أداء رائع! أنت متمكن من بايثون وttk.Style.' : 'Outstanding performance! You mastered Python and ttk.Style.';
+    color = 'var(--yellow)';
+  } else if (pct >= 0.75) {
+    grade = isAr ? '⭐ جيد جداً!' : '⭐ Very Good!';
+    desc = isAr ? 'أداء ممتاز! راجع بعض المواضيع لتصل للكمال.' : 'Excellent! Review a few topics to reach perfection.';
+    color = 'var(--blue)';
+  } else if (pct >= 0.6) {
+    grade = isAr ? '👍 جيد' : '👍 Good';
+    desc = isAr ? 'أداء جيد! ركّز على ttk.Style والـ OOP أكثر.' : 'Good job! Focus more on ttk.Style and OOP.';
+    color = 'var(--green)';
+  } else if (pct >= 0.4) {
+    grade = isAr ? '📚 مقبول' : '📚 Acceptable';
+    desc = isAr ? 'تحتاج مزيداً من التمرين. راجع الدروس بعناية.' : 'Needs more practice. Review the lessons carefully.';
+    color = '#f97316';
+  } else {
+    grade = isAr ? '🔄 راجع الدروس' : '🔄 Review Lessons';
+    desc = isAr ? 'لا بأس! كل خبير كان مبتدئاً. راجع الدروس وأعد المحاولة.' : 'That\'s okay! Every expert was once a beginner. Review and retry.';
+    color = 'var(--red)';
+  }
+  document.querySelector('.quiz-score-circle').style.borderColor = color;
+  document.querySelector('.quiz-score-num').style.color = color;
+  document.getElementById('quiz-grade').textContent = grade;
+  document.getElementById('quiz-grade-desc').textContent = desc;
+  const wrong = QUESTIONS.length - score;
+  document.getElementById('quiz-details').innerHTML = `
+    <div class="quiz-detail-item good">✅ ${isAr?'إجابات صحيحة':'Correct'}: ${score}</div>
+    <div class="quiz-detail-item bad">❌ ${isAr?'إجابات خاطئة':'Wrong'}: ${wrong}</div>
+    <div class="quiz-detail-item info">📊 ${isAr?'النسبة':'Score'}: ${Math.round(pct*100)}%</div>`;
+}
+function restartQuiz() {
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('quiz-start').style.display = 'block';
+}
+
+/* ═══════════════════════════════════════════════════
+   COMMENTS (localStorage + download as comments.txt)
+═══════════════════════════════════════════════════ */
+function getComments() {
+  return JSON.parse(localStorage.getItem('py-comments') || '[]');
+}
+function saveComments(comments) {
+  localStorage.setItem('py-comments', JSON.stringify(comments));
+}
+function addComment() {
+  const name = document.getElementById('c-name').value.trim();
+  const lesson = document.getElementById('c-lesson').value;
+  const body = document.getElementById('c-body').value.trim();
+  if (!name || !body) { alert(currentLang==='ar'?'يرجى إدخال الاسم والتعليق.':'Please enter name and comment.'); return; }
+  const comments = getComments();
+  comments.unshift({ id: Date.now(), name, lesson, body, time: new Date().toLocaleString() });
+  saveComments(comments);
+  document.getElementById('c-name').value = '';
+  document.getElementById('c-body').value = '';
+  renderComments();
+}
+function deleteComment(id) {
+  const comments = getComments().filter(c => c.id !== id);
+  saveComments(comments);
+  renderComments();
+}
+function renderComments() {
+  const filter = document.getElementById('lesson-filter').value;
+  const isAr = currentLang === 'ar';
+  let comments = getComments();
+  if (filter) comments = comments.filter(c => c.lesson === filter);
+  const list = document.getElementById('comment-list');
+  if (!comments.length) {
+    list.innerHTML = `<div class="empty-comments">${isAr?'لا توجد تعليقات بعد. كن أول من يعلق!':'No comments yet. Be the first!'}</div>`;
+    return;
+  }
+  const lessonNames = {basics:'أساسيات',functions:'الدوال',oop:'OOP',libraries:'مكتبات',tkinter:'Tkinter',ttk:'TTK',advanced:'متقدم'};
+  list.innerHTML = comments.map(c => `
+    <div class="comment-item">
+      <div class="comment-header">
+        <span class="comment-author">👤 ${c.name}</span>
+        <span style="display:flex;gap:8px;align-items:center">
+          <span class="comment-time">${c.time}</span>
+          <button class="comment-del" onclick="deleteComment(${c.id})" title="حذف">🗑</button>
+        </span>
+      </div>
+      <span class="comment-lesson">📚 ${lessonNames[c.lesson]||c.lesson}</span>
+      <p class="comment-body">${c.body}</p>
+    </div>`).join('');
+}
+function downloadComments() {
+  const comments = getComments();
+  const isAr = currentLang === 'ar';
+  if (!comments.length) { alert(isAr?'لا توجد تعليقات للتحميل.':'No comments to download.'); return; }
+  const header = `# أكاديمية بايثون — Python Academy\n# سجل التعليقات | Comments Log\n# ========================================\n# تاريخ التصدير: ${new Date().toLocaleString()}\n# عدد التعليقات: ${comments.length}\n# ========================================\n\n`;
+  const body = comments.map(c =>
+    `[${c.time}]\nالاسم/Name: ${c.name}\nالدرس/Lesson: ${c.lesson}\nالتعليق/Comment: ${c.body}\n${'—'.repeat(50)}`
+  ).join('\n\n');
+  const blob = new Blob([header + body], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'comments.txt';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+
+/* ═══════════════════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════════════════ */
+function scrollTo(selector) {
+  document.querySelector(selector)?.scrollIntoView({behavior:'smooth'});
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ═══════════════════════════════════════════════════
+   ACTIVE NAV
+═══════════════════════════════════════════════════ */
+const sections = ['hero','stages','content','resources','quiz','comments'];
+const sectionIds = ['nav.home','nav.stages','nav.content','nav.resources','nav.quiz','nav.comments'];
+window.addEventListener('scroll', () => {
+  let current = 'hero';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 80) current = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#'+current);
+  });
+});
+
+/* ═══════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════ */
+document.getElementById('year').textContent = new Date().getFullYear();
+applyLang();
+</script>
 </body>
 </html>
